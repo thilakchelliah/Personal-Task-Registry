@@ -1,3 +1,3 @@
-# Personal-Tech-Blog
+# Personal-Tech-Registry
 My personal tech blog tool
 #End
