@@ -21,7 +21,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -34,9 +34,10 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/fontcss', express.static(__dirname + '/node_modules/font-awesome'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/js', express.static(__dirname + '/node_modules/angular'));
-//app.use('/api', api); // redirect API calls
+app.use('/js', express.static(__dirname + '/node_modules/angular-ui-router/release'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

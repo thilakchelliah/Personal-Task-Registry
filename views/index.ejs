@@ -4,14 +4,16 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/fontcss/css/font-awesome.min.css">
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-ui-router.min.js"></script>
+    <script src="/javascripts/AngApp.js"></script>
   </head>
   <body>
     <% include ../views/partials/header %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <% include ../views/partials/content %>
      <% include ../views/partials/footer %>
   </body>
 </html>
