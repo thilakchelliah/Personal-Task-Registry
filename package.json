@@ -13,12 +13,19 @@
     "ejs": "~2.5.2",
     "express": "~4.14.0",
     "font-awesome": "^4.7.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-init": "^0.3.2",
+    "jshint-stylish": "^2.2.1",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-    "grunt": "^1.0.1"
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0"
   }
 }

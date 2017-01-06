@@ -1,44 +1,55 @@
 module.exports = function(grunt) {
 
-  // files to be minified and combined
-  var cssFiles = [
-    'public/stylesheet/style.css',
-  ];
-
-  // this is where all the grunt configs will go
   grunt.initConfig({
-    // read the package.json
-    // pkg will contain a reference to out pakage.json file use of which we will see later
     pkg: grunt.file.readJSON('package.json'),
-
-    // configuration for the cssmin task
-    // note that this syntax and options can found on npm page of any grunt plugin/task
-    cssmin: {
-      // options for css min task
-      options:{
-        // banner to be put on the top of the minified file using package name and todays date
-        // note that we are reading our project name using pkg.name i.e name of our project
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      },
-      combine: {
-        // options for combining files
-        // we have defined cssFiles variable to hold our file names at the top
+    jshint: {
+      all: ['public/**/*.js']
+    },
+    uglify: {
+      my_target: {
+        options: {
+          sourceMap: true
+        },
         files: {
-          // here key part is output file which will our <package name>.min.css
-          // value part is set of input files which will be combined/minified
-          'public/css/<%= pkg.name %>.min.css': cssFiles
+          'public/App/TechView/TechView.controller.min.js': 'public/App/TechView/TechView.controller.js',
+          'public/App/TechView/TechView.service.min.js': 'public/App/TechView/TechView.service.js',
+          'public/App/AngApp.min.js': 'public/App/AngApp.js',
         }
       }
+    },
+    concat: {
+      options: {
+        separator: grunt.util.linefeed + grunt.util.linefeed
+      },
+      dist: {
+        src: ['public/App/TechView/TechView.controller.min.js',
+          'public/App/TechView/TechView.service.min.js',
+          'public/App/AngApp.min.js'
+        ],
+        dest: 'public/javascripts/Global.min.js',
+      },
+    },
+    clean: {
+      js: ['public/**/*.min.js', 'public/**/*.min.js.map']
+    },
+    watch: {
+      jshint: {
+        files: ['public/App/**/*.js'],
+        tasks: ['jshint']
+      },
+      uglify: {
+        files: ['public/App/**/*.js'],
+        tasks: ['uglify']
+      }
     }
+  });
 
-  }); // end of configuring the grunt task
-
-  // Load the plugin that provides the "cssmin" task.
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Default task(s).
-  grunt.registerTask('default', ['cssmin']);
-  // cssmin task
-  grunt.registerTask('buildcss', ['cssmin']);
-
+  grunt.registerTask('default', ['clean', 'jshint', 'uglify', 'concat']);
 };
