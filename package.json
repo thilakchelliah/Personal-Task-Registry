@@ -21,6 +21,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-init": "^0.3.2",
     "jshint-stylish": "^2.2.1",
+    "mongoose": "^4.7.6",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0"
   },

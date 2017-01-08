@@ -1,11 +1,80 @@
+/**** font section *****/
+
+@font-face {
+    font-family: choosenLight;
+    src: url(../fonts/Chosence_Light.otf);
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #44BAF8 !important;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 
- 
+/* navbar */
+
+.navbar-White {
+    background-color: #FFFFFF !important;
+    min-height: 100px !important;
+}
+
+.navbar-brand-overide {
+    color: #44BAF8 !important;
+    font-size: 25px !important;
+    font-family: choosenLight
+}
+
+.footer-modified {
+    background-color: #363636 !important;
+    border: none !important;
+    min-height: 300px !important;
+    font-size: 15px !important;
+    color: #FFFFFF !important;
+}
+
+
+.footer-newsletter{
+  margin-bottom: 10px;
+  font-family: choosenLight;
+}
+.footer-copyright{
+  font-family: choosenLight;
+}
+.footer-newsletter .single {
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-newsletter .single h2 {
+    font-size: 22px;
+    font-family: choosenLight;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.footer-newsletter .single .form-control {
+    height: 50px;
+    border-color: transparent;
+    border-radius: 20px 0 0 20px;
+}
+
+.footer-newsletter .single .form-control:focus {
+    box-shadow: none;
+    border-color: #243c4f;
+}
+
+.footer-newsletter .single .btn {
+    min-height: 50px;
+    border-radius: 0 20px 20px 0;
+    background: #44BAF8;
+    color: #fff;
+}

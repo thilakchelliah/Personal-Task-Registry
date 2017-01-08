@@ -5,7 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose =  require('mongoose');
-mongoose.connect("mongodb://" + process.env.IP + ":27017/data/TechRegistrydb",function(err, db){
+var localIp=process.env.IP!=undefined?process.env.IP:"localhost";
+var localport=process.env.PORT!=undefined?process.env.PORT:4500;
+console.log(localIp);
+console.log(localport);
+
+mongoose.connect("mongodb://" + localIp + ":27017/data/TechRegistrydb",function(err, db){
   if (err) {
     return console.dir(err);
   }
@@ -56,8 +61,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-app.listen(15454);
+app.listen(localport);
 
 
-console.log('Server running at ' + process.env.IP + ':' + process.env.PORT);
+console.log('Server running at ' + localIp + ':' + localport);
 module.exports = app;
