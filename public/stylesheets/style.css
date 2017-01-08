@@ -23,6 +23,10 @@ a {
     min-height: 100px !important;
 }
 
+.navbar-default {
+    border: none !important;
+}
+
 .navbar-brand-overide {
     color: #44BAF8 !important;
     font-size: 25px !important;
@@ -37,14 +41,15 @@ a {
     color: #FFFFFF !important;
 }
 
+.footer-newsletter {
+    margin-bottom: 10px;
+    font-family: choosenLight;
+}
 
-.footer-newsletter{
-  margin-bottom: 10px;
-  font-family: choosenLight;
+.footer-copyright {
+    font-family: choosenLight;
 }
-.footer-copyright{
-  font-family: choosenLight;
-}
+
 .footer-newsletter .single {
     max-width: 650px;
     margin: 0 auto;
