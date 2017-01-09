@@ -17,7 +17,7 @@ mongoose.connect("mongodb://" + localIp + ":27017/data/TechRegistrydb",function(
 });
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var apiRoute = require('./routes/apiRoute');
 
 var app = express();
 
@@ -36,7 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/api', apiRoute);
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap3/dist/js'));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap3/dist/css'));
 app.use('/fontcss', express.static(__dirname + '/node_modules/font-awesome'));

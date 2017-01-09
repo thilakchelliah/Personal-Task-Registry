@@ -13,6 +13,8 @@ module.exports = function(grunt) {
         files: {
           'public/App/TechView/TechView.controller.min.js': 'public/App/TechView/TechView.controller.js',
           'public/App/TechView/TechView.service.min.js': 'public/App/TechView/TechView.service.js',
+          'public/App/BlogList/BlogList.controller.min.js': 'public/App/BlogList/BlogList.controller.js',
+          'public/App/BlogList/BlogList.service.min.js': 'public/App/BlogList/BlogList.service.js',
           'public/App/AngApp.min.js': 'public/App/AngApp.js',
         }
       }
@@ -24,6 +26,8 @@ module.exports = function(grunt) {
       dist: {
         src: ['public/App/TechView/TechView.controller.min.js',
           'public/App/TechView/TechView.service.min.js',
+          'public/App/BlogList/BlogList.controller.min.js',
+          'public/App/BlogList/BlogList.service.min.js',
           'public/App/AngApp.min.js'
         ],
         dest: 'public/javascripts/Global.min.js',
