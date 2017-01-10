@@ -36,11 +36,12 @@ module.exports = function(grunt) {
         separator: grunt.util.linefeed + grunt.util.linefeed
       },
       js: {
-        src: ['public/App/TechView/TechView.controller.min.js',
+        src: [
+          'public/App/AngApp.min.js',
+          'public/App/TechView/TechView.controller.min.js',
           'public/App/TechView/TechView.service.min.js',
           'public/App/BlogList/BlogList.controller.min.js',
-          'public/App/BlogList/BlogList.service.min.js',
-          'public/App/AngApp.min.js'
+          'public/App/BlogList/BlogList.service.min.js'
         ],
         dest: 'public/javascripts/Global.min.js',
       },
