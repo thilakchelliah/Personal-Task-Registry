@@ -17,7 +17,7 @@ mongoose.connect("mongodb://" + localIp + ":27017/data/TechRegistrydb",function(
 });
 
 var index = require('./routes/index');
-var apiRoute = require('./routes/apiRoute');
+var apiRoute = require('./routes/apiRoutes');
 
 var app = express();
 

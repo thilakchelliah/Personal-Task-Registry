@@ -5,6 +5,18 @@ module.exports = function(grunt) {
     jshint: {
       all: ['public/**/*.js']
     },
+    cssmin: {
+      options: {
+        sourceMap: true,
+        report: 'min'
+      },
+      target: {
+        files: {
+          'public/stylesheets/style.min.css': 'public/stylesheets/style.css',
+          'public/stylesheets/cards.min.css': 'public/stylesheets/cards.css'
+        }
+      }
+    },
     uglify: {
       my_target: {
         options: {
@@ -23,7 +35,7 @@ module.exports = function(grunt) {
       options: {
         separator: grunt.util.linefeed + grunt.util.linefeed
       },
-      dist: {
+      js: {
         src: ['public/App/TechView/TechView.controller.min.js',
           'public/App/TechView/TechView.service.min.js',
           'public/App/BlogList/BlogList.controller.min.js',
@@ -32,9 +44,16 @@ module.exports = function(grunt) {
         ],
         dest: 'public/javascripts/Global.min.js',
       },
+      css: {
+        src: ['public/stylesheets/style.min.css',
+          'public/stylesheets/cards.min.css'
+        ],
+        dest: 'public/stylesheets/Global.min.css',
+      },
     },
     clean: {
-      js: ['public/**/*.min.js', 'public/**/*.min.js.map']
+      js: ['public/**/*.min.js', 'public/**/*.min.js.map'],
+      css: ['public/**/*.min.css', 'public/**/*.min.css.map']
     },
     watch: {
       jshint: {
@@ -53,7 +72,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Default task(s).
-  grunt.registerTask('default', ['clean', 'jshint', 'uglify', 'concat']);
+  grunt.registerTask('default', ['clean', 'jshint', 'uglify', 'cssmin', 'concat']);
 };
