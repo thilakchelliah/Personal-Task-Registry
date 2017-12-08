@@ -8,6 +8,7 @@
   "dependencies": {
     "angular-ui-router": "^0.3.2",
     "body-parser": "~1.15.2",
+    "bootstrap": "^4.0.0-beta",
     "bootstrap3": "^3.3.5",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
@@ -23,8 +24,13 @@
     "grunt-init": "^0.3.2",
     "jquery": "^3.1.1",
     "jshint-stylish": "^2.2.1",
+    "material-ui": "^0.16.6",
     "mongoose": "^4.7.6",
     "morgan": "~1.7.0",
+    "popper.js": "^1.12.5",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-tap-event-plugin": "^2.0.1",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {

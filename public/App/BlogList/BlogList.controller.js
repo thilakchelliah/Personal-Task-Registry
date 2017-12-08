@@ -1,3 +1,4 @@
+/*global techRegistryApp*/
   techRegistryApp.controller('blogListController', ['$scope',
 
       function blogListController($scope) {
