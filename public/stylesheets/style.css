@@ -1,83 +1,37 @@
-.navbar-brand {
-    float: left;
-    height: 50px;
-    padding: 15px 15px;
-    font-size: 30px;
-    line-height: 20px;
-    position: relative;
-}
 
-a.navbar-brand .navbrand-logo {
- position: absolute;
- top:-1px;
-}
 
-.navbar-collapse {
-    float: right;
-    padding-right: 15px;
-    padding-left: 15px;
-    overflow-x: visible;
-    -webkit-overflow-scrolling: touch;
-    border-top: 0;
-
-}
-
-.navbar-fixed-top {
-    top: 0;
-    border-width: 0 0 0;
+.navbar{
     background-color: #0db4be;
+    border-radius:0px !important;
+}
+#navbar-primary .navbar-nav {
+    width: 100%;
+    text-align: center;
 }
 
-.nav-tabs {
-    border-bottom: 0;
+#navbar-primary .navbar-nav>li {
+    display: inline-block;
+    float: none;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
-.nav>li>a {
+#navbar-primary .navbar-nav>li>a , #navbar-primary .navbar-nav>li>a :hover{
+    color: #FFF;
+    background:none !important;
+}
+#logo-navbar-middle{
     position: relative;
-    display: block;
-    padding: 20px 25px;
+    bottom:10px;
 }
 
-.nav-tabs>li>a {
-    margin-right: 2px;
-    line-height: 1.42857143;
-    border: 0;
-    border-radius: 0 0 0 0;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: #fff;
-}
-
-.nav-tabs>li>a:hover {
-    background-color: #36CBD4;
-}
-
-.nav-tabs>li.active>a {
-    color: #fff;
-    cursor: default;
-    background-color: #36CBD4;
-    border: 0;
-    border-bottom-color: transparent;
-
-}
-
-.nav-tabs>li.active>a:hover {
-    color: #fff;
-    border: 0;
-    background-color: #36CBD4;
-    cursor: pointer;
-}
-
-.nav-tabs>li {
-    margin-bottom: 0;
-}
 
 /*=========================
   Footer
  ================= */
 
 footer {
-    background: #0db4be ;
+    background: #0db4be;
 }
 
 .inner-footer ul li,
@@ -157,14 +111,14 @@ a {
 
 .copyright {
     font-size: 14px;
-     color: #73f4fc;
+    color: #73f4fc;
     margin-top: 15px;
     font-weight: 300;
     float: left;
 }
 
 .copyright a {
-     color: #73f4fc;
+    color: #73f4fc;
 }
 
 .copyright a:hover {
@@ -215,4 +169,9 @@ a.scrollup:hover {
     background-color: #36CBD4;
     color: #fff;
     ;
+}
+
+/*-------------Blog card Style-------------------*/
+.blog-card{
+    margin-top:20px;
 }
