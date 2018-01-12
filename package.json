@@ -6,14 +6,17 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "angular-ui-router": "^0.3.2",
+    "@uirouter/angularjs": "^1.0.12",
+    "bcrypt": "^1.0.3",
     "body-parser": "~1.15.2",
     "bootstrap": "^4.0.0-beta",
     "bootstrap3": "^3.3.5",
+    "connect-mongo": "^2.0.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "ejs": "~2.5.2",
     "express": "~4.14.0",
+    "express-session": "^1.15.6",
     "font-awesome": "^4.7.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "^1.0.1",
@@ -35,6 +38,7 @@
   },
   "devDependencies": {
     "grunt": "^1.0.1",
-    "grunt-contrib-watch": "^1.0.0"
+    "grunt-contrib-watch": "^1.0.0",
+    "nodemon": "^1.14.7"
   }
 }

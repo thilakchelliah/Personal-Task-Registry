@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
-      all: ['public/**/*.js']
+      all: ['ClientServer/**/*.js']
     },
     cssmin: {
       options: {
@@ -24,11 +24,15 @@ module.exports = function(grunt) {
           sourceMap: true
         },
         files: {
-          'public/App/TechView/TechView.controller.min.js': 'public/App/TechView/TechView.controller.js',
-          'public/App/TechView/TechView.service.min.js': 'public/App/TechView/TechView.service.js',
-          'public/App/BlogList/BlogList.controller.min.js': 'public/App/BlogList/BlogList.controller.js',
-          'public/App/BlogList/BlogList.service.min.js': 'public/App/BlogList/BlogList.service.js',
-          'public/App/AngApp.min.js': 'public/App/AngApp.js',
+          'ClientServer/Angular1/Controllers/TechView.controller.min.js': 'ClientServer/Angular1/Controllers/TechView.controller.js',
+          'ClientServer/Angular1/Controllers/BlogList.controller.min.js': 'ClientServer/Angular1/Controllers/BlogList.controller.js',
+          'ClientServer/Angular1/Controllers/Login.controller.min.js': 'ClientServer/Angular1/Controllers/Login.controller.js',
+          'ClientServer/Angular1/Service/TechView.service.min.js': 'ClientServer/Angular1/Service/TechView.service.js',
+          'ClientServer/Angular1/Service/BlogList.service.min.js': 'ClientServer/Angular1/Service/BlogList.service.js',
+          'ClientServer/Angular1/Service/login.service.min.js': 'ClientServer/Angular1/Service/login.service.js',
+          'ClientServer/Angular1/Directives/SignUp/SignUp.directive.min.js': 'ClientServer/Angular1/Directives/SignUp/SignUp.directive.js',
+          'ClientServer/Angular1/Directives/shared/common.directive.min.js':'ClientServer/Angular1/Directives/shared/common.directive.js',
+          'ClientServer/Angular1/AngApp.min.js': 'ClientServer/Angular1/AngApp.js',
         }
       }
     },
@@ -38,11 +42,15 @@ module.exports = function(grunt) {
       },
       js: {
         src: [
-          'public/App/AngApp.min.js',
-          'public/App/TechView/TechView.controller.min.js',
-          'public/App/TechView/TechView.service.min.js',
-          'public/App/BlogList/BlogList.controller.min.js',
-          'public/App/BlogList/BlogList.service.min.js'
+          'ClientServer/Angular1/AngApp.min.js',
+          'ClientServer/Angular1/Controllers/TechView.controller.min.js',
+          'ClientServer/Angular1/Controllers/Login.controller.min.js',
+          'ClientServer/Angular1/Controllers/BlogList.controller.min.js',
+          'ClientServer/Angular1/Service/TechView.service.min.js',
+          'ClientServer/Angular1/Service/BlogList.service.min.js',
+          'ClientServer/Angular1/Service/login.service.min.js',
+          'ClientServer/Angular1/Directives/SignUp/SignUp.directive.min.js',
+          'ClientServer/Angular1/Directives/shared/common.directive.min.js'
         ],
         dest: 'public/javascripts/Global.min.js',
       },
@@ -55,16 +63,16 @@ module.exports = function(grunt) {
       },
     },
     clean: {
-      js: ['public/**/*.min.js', 'public/**/*.min.js.map'],
+      js: ['ClientServer/**/*.min.js', 'ClientServer/**/*.min.js.map','public/**/*.min.js', 'public/**/*.min.js.map'],
       css: ['public/**/*.min.css', 'public/**/*.min.css.map']
     },
     watch: {
       jshint: {
-        files: ['public/App/**/*.js'],
+        files: ['ClientServer/**/*.js'],
         tasks: ['jshint']
       },
       uglify: {
-        files: ['public/App/**/*.js'],
+        files: ['ClientServer/**/*.js'],
         tasks: ['uglify']
       }
     }
@@ -79,4 +87,6 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'jshint', 'uglify', 'cssmin', 'concat']);
+   // Default task(s).
+  grunt.registerTask('dev', ['clean', 'jshint', 'uglify', 'cssmin', 'concat']);
 };

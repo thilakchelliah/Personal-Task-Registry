@@ -34,6 +34,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'ClientServer')));
 
 app.use('/', index);
 app.use('/api', apiRoute);
@@ -43,7 +44,7 @@ app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist'));
 app.use('/fontcss', express.static(__dirname + '/node_modules/font-awesome'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/js', express.static(__dirname + '/node_modules/angular'));
-app.use('/js', express.static(__dirname + '/node_modules/angular-ui-router/release'));
+app.use('/js', express.static(__dirname + '/node_modules/@uirouter/angularjs/release'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
