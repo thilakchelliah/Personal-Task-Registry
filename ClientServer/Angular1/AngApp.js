@@ -1,11 +1,12 @@
 /*global angular*/
 /*jshint -W030 */
-var techRegistryApp = angular.module("techRegistryApp", ['ui.router']);
+var techRegistryApp = angular.module("techRegistryApp", ['ui.router','ngStorage']);
 
 
-techRegistryApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider) {
+techRegistryApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
-  $urlRouterProvider.otherwise('/home');
+    $httpProvider.interceptors.push('AuthInterceptor');
+    $urlRouterProvider.otherwise('/home');
 
     $stateProvider
 

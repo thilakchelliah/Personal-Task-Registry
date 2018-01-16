@@ -4,20 +4,25 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose =  require('mongoose');
-var localIp=process.env.IP!=undefined?process.env.IP:"localhost";
-var localport=process.env.PORT!=undefined?process.env.PORT:4500;
+var mongoose = require('mongoose');
+
+global.config = require('./config');
+var jwt = require('jsonwebtoken');
+var localIp = process.env.IP != undefined ? process.env.IP : "localhost";
+var localport = process.env.PORT != undefined ? process.env.PORT : 4500;
 console.log(localIp);
 console.log(localport);
 
-mongoose.connect("mongodb://" + localIp + ":27017/data/TechRegistrydb",function(err, db){
+mongoose.connect("mongodb://" + localIp + ":27017/TechRegistrydb", { useMongoClient: true }, function (err, db) {
   if (err) {
     return console.dir(err);
   }
 });
 
+
 var index = require('./routes/index');
-var apiRoute = require('./routes/apiRoutes');
+var apiRouteOpen = require('./routes/apiRoutesOpen');
+var apiRouteSecured = require('./routes/apiRoutesSecured');
 
 var app = express();
 
@@ -37,24 +42,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'ClientServer')));
 
 app.use('/', index);
-app.use('/api', apiRoute);
+app.use('/api', apiRouteOpen);
+app.use('/apiS', apiRouteSecured);
+
+app.use('/bootbox', express.static(__dirname + '/node_modules/bootbox'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist'));
 app.use('/fontcss', express.static(__dirname + '/node_modules/font-awesome'));
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
+app.use('/js', express.static(__dirname + '/node_modules/ngstorage'));
 app.use('/js', express.static(__dirname + '/node_modules/angular'));
 app.use('/js', express.static(__dirname + '/node_modules/@uirouter/angularjs/release'));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
