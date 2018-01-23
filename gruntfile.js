@@ -13,7 +13,7 @@ module.exports = function(grunt) {
       target: {
         files: {
           'public/stylesheets/style.min.css': 'public/stylesheets/style.css',
-          'public/stylesheets/common.min.css': 'public/stylesheets/common.css',
+          //'public/stylesheets/common.min.css': 'public/stylesheets/common.css',
           'public/stylesheets/cards.min.css': 'public/stylesheets/cards.css'
         }
       }
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
       css: {
         src: ['public/stylesheets/style.min.css',
           'public/stylesheets/cards.min.css',
-          'public/stylesheets/common.min.css'
+          'public/stylesheets/common.css'
         ],
         dest: 'public/stylesheets/Global.min.css',
       },

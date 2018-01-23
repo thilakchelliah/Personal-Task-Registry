@@ -1,14 +1,30 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <script src="/js/jquery.min.js"></script>
+  <% if(dev=='false') { %>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/popper/umd/popper.min.js"></script>
+  <script src="/bootstrap/bootstrap.min.js"></script>
+  <script src="/bootbox/bootbox.min.js"></script>
+  <script src="/js/angular.js"></script>
+  <script src="/js/angular-ui-router.min.js"></script>
+  <script src="/js/stateEvents.min.js"></script>
+  <script src="/js/ngStorage.min.js"></script>
+  <script src="/javascripts/common.js"></script>
+  <script src="/javascripts/Global.min.js"></script>
+  <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='/stylesheets/Global.min.css' />
+  <link rel="stylesheet" href="/stylesheets/cards.min.css">
+  <link rel="stylesheet" href="/fontcss/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css?family=Dosis|Open+Sans+Condensed:300|Quicksand" rel="stylesheet">
+  <% }  %>
+  <% if(dev=='true') { %>
+   <script src="/js/jquery.min.js"></script>
     <script src="/popper/umd/popper.min.js"></script>
     <script src="/bootstrap/bootstrap.min.js"></script>
     <script src="/bootbox/bootbox.min.js"></script>
     <script src="/js/angular.js"></script>
     <script src="/js/ngStorage.min.js"></script>
     <script src="/js/angular-ui-router.js"></script>
+    <script src="/js/stateEvents.js"></script>
     <script src="/javascripts/common.js"></script>    
     <script src="/Angular1/AngApp.js" ></script>
     <script src="/Angular1/Controllers/TechView.controller.js"></script>
@@ -27,11 +43,4 @@
     <link rel="stylesheet" href="/fontcss/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/css?family=Dosis|Open+Sans+Condensed:300|Quicksand" rel="stylesheet">
-
-  </head>
-  <body ng-app="techRegistryApp">
-    <% include ../views/partials/header %>
-    <% include ../views/partials/content %>
-     <% include ../views/partials/footer %>
-  </body>
-</html>
+  <% } %>

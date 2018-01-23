@@ -1,5 +1,5 @@
-/*global techRegistryApp*/
-techRegistryApp.directive('signUpDirective', ['loginService', function (loginService) {
+/*global tRDashboardApp,bootbox */
+tRDashboardApp.directive('signUpDirective', ['loginService', function (loginService) {
     return {
         restrict: 'E',
         templateUrl: 'Angular1/Directives/SignUp/signup.html',
@@ -37,7 +37,7 @@ techRegistryApp.directive('signUpDirective', ['loginService', function (loginSer
                 var userName = $scope.UserName;
                 loginService.checkValidUserName(userName).then(function (res) {
 
-                    if (res.data.length != 0) {
+                    if (res.data.length !== 0) {
                         $scope.isUserNameError = true;
                         $scope.userNameError = res.data;
                     }
@@ -48,8 +48,8 @@ techRegistryApp.directive('signUpDirective', ['loginService', function (loginSer
             $scope.chkValidEmail = function () {
                 var email = $scope.email;
                 loginService.checkValidEmail(email).then(function (res) {
-                    if (res.data.length != 0) {
-                        scope.isEmailError = true;
+                    if (res.data.length !== 0) {
+                        $scope.isEmailError = true;
                         $scope.emailError = res.data;
                     }
 
@@ -60,7 +60,7 @@ techRegistryApp.directive('signUpDirective', ['loginService', function (loginSer
 
             $scope.redirectToHome=function(){
                 $state.go('home');
-            }
+            };
         }]
     };
 }]);

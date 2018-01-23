@@ -1,6 +1,6 @@
-/*global techRegistryApp*/
+/*global tRDashboardApp*/
 /*jshint -W030 */
-techRegistryApp.service('loginService', ['$http', function ($http) {
+tRDashboardApp.service('loginService', ['$http', function ($http) {
     var loginService = {};
     var _createUser = function (data) {
         return $http.post('api/User/Create', data);

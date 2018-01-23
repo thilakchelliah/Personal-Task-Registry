@@ -13,7 +13,7 @@ var localport = process.env.PORT != undefined ? process.env.PORT : 4500;
 console.log(localIp);
 console.log(localport);
 
-mongoose.connect("mongodb://" + localIp + ":27017/TechRegistrydb", { useMongoClient: true }, function (err, db) {
+mongoose.connect("mongodb://" + localIp + ":27017/TechRegistrydb", { useMongoClient: true }, function(err, db) {
   if (err) {
     return console.dir(err);
   }
@@ -23,6 +23,7 @@ mongoose.connect("mongodb://" + localIp + ":27017/TechRegistrydb", { useMongoCli
 var index = require('./routes/index');
 var apiRouteOpen = require('./routes/apiRoutesOpen');
 var apiRouteSecured = require('./routes/apiRoutesSecured');
+var middleWare = require('./middleware/JSWMiddleware');
 
 var app = express();
 
@@ -43,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'ClientServer')));
 
 app.use('/', index);
 app.use('/api', apiRouteOpen);
-app.use('/apiS', apiRouteSecured);
+app.use('/apiS', middleWare, apiRouteSecured);
 
 app.use('/bootbox', express.static(__dirname + '/node_modules/bootbox'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
@@ -56,14 +57,14 @@ app.use('/js', express.static(__dirname + '/node_modules/angular'));
 app.use('/js', express.static(__dirname + '/node_modules/@uirouter/angularjs/release'));
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

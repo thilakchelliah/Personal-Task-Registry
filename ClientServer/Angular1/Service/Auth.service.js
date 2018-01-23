@@ -1,24 +1,23 @@
-'use strict';
 
-/*global techRegistryApp*/
+/*global sharedModule,$localStorage*/
 /*jshint -W030 */
-techRegistryApp.factory('AuthInterceptor', function ($rootScope, $q, $window, $location) {
+sharedModule.factory('AuthInterceptor',['$rootScope', '$q', '$localStorage', '$location', function ($rootScope, $q, $localStorage, $location) {
     return {
         request: function (config) {
             config.headers = config.headers || {};
-            if ($window.localStorage.token) {
-                config.headers.Authorization = 'Token ' + $window.localStorage.token;
+            if ($localStorage.currentUser.token) {
+                config.headers.Authorization = 'Token ' + $localStorage.currentUser.token;
             }
             return config;
         },
 
         responseError: function (response) {
             if (response.status === 401) {
-                $window.localStorage.removeItem('token');
+                $localStorage.removeItem('token');
                 $location.path('/');
                 return;
             }
             return $q.reject(response);
         }
     };
-});
+}]);
