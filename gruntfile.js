@@ -13,7 +13,7 @@ module.exports = function(grunt) {
       target: {
         files: {
           'public/stylesheets/style.min.css': 'public/stylesheets/style.css',
-          //'public/stylesheets/common.min.css': 'public/stylesheets/common.css',
+          'public/stylesheets/common.min.css': 'public/stylesheets/common.css',
           'public/stylesheets/cards.min.css': 'public/stylesheets/cards.css'
         }
       }
@@ -31,9 +31,11 @@ module.exports = function(grunt) {
           'ClientServer/Angular1/Service/BlogList.service.min.js': 'ClientServer/Angular1/Service/BlogList.service.js',
           'ClientServer/Angular1/Service/Auth.service.min.js': 'ClientServer/Angular1/Service/Auth.service.js',
           'ClientServer/Angular1/Service/login.service.min.js': 'ClientServer/Angular1/Service/login.service.js',
+          'ClientServer/Angular1/Service/shared.service.min.js': 'ClientServer/Angular1/Service/shared.service.js',
           'ClientServer/Angular1/Directives/SignUp/SignUp.directive.min.js': 'ClientServer/Angular1/Directives/SignUp/SignUp.directive.js',
           'ClientServer/Angular1/Directives/Login/Login.directive.min.js': 'ClientServer/Angular1/Directives/Login/Login.directive.js',
           'ClientServer/Angular1/Directives/shared/common.directive.min.js':'ClientServer/Angular1/Directives/shared/common.directive.js',
+          'ClientServer/Angular1/Directives/shared/Grid/grid.directive.min.js':'ClientServer/Angular1/Directives/shared/Grid/grid.directive.js',
           'ClientServer/Angular1/AngApp.min.js': 'ClientServer/Angular1/AngApp.js',
         }
       }
@@ -52,9 +54,11 @@ module.exports = function(grunt) {
           'ClientServer/Angular1/Service/Auth.service.min.js',
           'ClientServer/Angular1/Service/BlogList.service.min.js',
           'ClientServer/Angular1/Service/login.service.min.js',
+          'ClientServer/Angular1/Service/shared.service.min.js',
           'ClientServer/Angular1/Directives/SignUp/SignUp.directive.min.js',
           'ClientServer/Angular1/Directives/Login/Login.directive.min.js',
-          'ClientServer/Angular1/Directives/shared/common.directive.min.js'
+          'ClientServer/Angular1/Directives/shared/common.directive.min.js',
+          'ClientServer/Angular1/Directives/shared/Grid/grid.directive.min.js'
         ],
         dest: 'public/javascripts/Global.min.js',
       },

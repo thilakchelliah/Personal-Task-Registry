@@ -10,7 +10,6 @@ var tRDashboardApp = angular.module("trApp.Dashboard", ['ui.router', 'ngStorage'
 
 techRegistryApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
 
-    $httpProvider.interceptors.push('AuthInterceptor');
     $urlRouterProvider.otherwise('/main');
 
     $stateProvider
@@ -29,13 +28,11 @@ tRDashboardApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 
 
         $stateProvider
 
-            // HOME STATES AND NESTED VIEWS ========================================
+
             .state('home', {
                 url: '/admin/home',
                 templateUrl: 'App/ContentMaster/DashboardContent.html'
             })
-
-            // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
             .state('login', {
                 url: '/',
                 templateUrl: 'App/User/Login.html'
@@ -43,6 +40,10 @@ tRDashboardApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 
             .state('signup', {
                 url: '/admin/signup',
                 templateUrl: 'App/User/Registration.html'
+            })
+            .state('home.userWidget', {
+                url: '/UserWidget',
+                templateUrl: 'App/dashboardWidgets/userGrid.html'
             });
 
 
@@ -50,9 +51,11 @@ tRDashboardApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 
     }])
     .run(['$rootScope', '$state', '$localStorage', function($rootScope, $state, $localStorage) {
         $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams, options) {
-            if (toState.name == 'login' && $localStorage.currentUser.token) {
-                event.preventDefault();
-                $state.go('home');
+            if (toState.name == 'login' && $localStorage.currentUser) {
+                if ($localStorage.currentUser.token) {
+                    event.preventDefault();
+                    $state.go('home');
+                }
             }
         });
     }]);

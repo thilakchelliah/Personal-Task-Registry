@@ -1,5 +1,5 @@
-/*global techRegistryApp*/
-techRegistryApp.directive('sameAs', function() {
+/*global tRDashboardApp*/
+tRDashboardApp.directive('sameAs', function() {
     return {
         require: 'ngModel',
         link: function(scope, element, attrs, ctrl) {

@@ -11,7 +11,6 @@ tRDashboardApp.directive('loginDirective', ['loginService', '$localStorage', '$s
                 var password = $scope.password;
                 loginService.ValidateAndLogin(username, password).then(
                     function(response) {
-                        debugger;
                         if (response.data.token) {
                             // store username and token in local storage to keep user logged in between page refreshes
                             $localStorage.currentUser = { username: username, token: response.data.token };
