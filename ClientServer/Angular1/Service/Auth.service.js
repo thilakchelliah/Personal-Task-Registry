@@ -11,9 +11,15 @@ sharedModule.factory('AuthInterceptor', ['$rootScope', '$q', '$localStorage', '$
         },
 
         responseError: function(response) {
+            debugger;
+            if (!$localStorage.currentUser) {
+                $location.path('/login');
+                return false;
+            }
             if (response.status === 401 || response.status === 403) {
+
                 $localStorage.currentUser.token = null;
-                $location.path('/');
+                $location.path('/login');
                 return false;
             }
             return $q.reject(response);

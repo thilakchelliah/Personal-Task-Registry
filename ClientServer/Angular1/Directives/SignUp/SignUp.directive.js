@@ -59,7 +59,7 @@ tRDashboardApp.directive('signUpDirective', ['loginService', function (loginServ
             };
 
             $scope.redirectToHome=function(){
-                $state.go('home');
+                $state.go('login');
             };
         }]
     };

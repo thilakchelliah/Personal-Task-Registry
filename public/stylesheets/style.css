@@ -3,14 +3,17 @@
 .marTop10 {
     margin-top: 10px;
 }
+
 .marleft23 {
     margin-left: 23%;
 }
-.padleft10{
+
+.padleft10 {
     padding-left: 10px;
 }
-.padright10{
-     padding-right: 10px;
+
+.padright10 {
+    padding-right: 10px;
 }
 
 
@@ -20,31 +23,33 @@
     color: #fff;
 }
 
-.navbar-nav .nav-link{
+.navbar-nav .nav-link {
     color: #FFF !important;
 }
-.navbar .nav > li > .dropdown-menu:before {
-  position: absolute;
-  top: -7px;
-  left: 9px;
-  display: inline-block;
-  border-right: 7px solid transparent;
-  border-bottom: 7px solid #ccc;
-  border-left: 7px solid transparent;
-  border-bottom-color: rgba(0, 0, 0, 0.2);
-  content: '';
+
+.navbar .nav>li>.dropdown-menu:before {
+    position: absolute;
+    top: -7px;
+    left: 9px;
+    display: inline-block;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ccc;
+    border-left: 7px solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    content: '';
 }
 
-.navbar .nav > li > .dropdown-menu:after {
-  position: absolute;
-  top: -6px;
-  left: 10px;
-  display: inline-block;
-  border-right: 6px solid transparent;
-  border-bottom: 6px solid #ffffff;
-  border-left: 6px solid transparent;
-  content: '';
+.navbar .nav>li>.dropdown-menu:after {
+    position: absolute;
+    top: -6px;
+    left: 10px;
+    display: inline-block;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #ffffff;
+    border-left: 6px solid transparent;
+    content: '';
 }
+
 /*=========================
   Footer
  ================= */
@@ -193,4 +198,11 @@ a.scrollup:hover {
 
 .blog-card {
     margin-top: 20px;
+}
+
+
+
+.dashboardNav {
+    display: list-item;
+    padding-left: 40px;
 }

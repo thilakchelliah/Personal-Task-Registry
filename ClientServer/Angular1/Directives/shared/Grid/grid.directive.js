@@ -1,5 +1,5 @@
 /*global tRDashboardApp,$*/
-tRDashboardApp.directive('gridDirective', ['$localStorage', '$state', function($localStorage, $state) {
+tRDashboardApp.directive('gridDirective', ['$localStorage', 'sharedService', '$state', function($localStorage, sharedService, $state) {
     return {
         restrict: 'E',
         templateUrl: 'Angular1/Directives/shared/Grid/Grid.html',
@@ -10,6 +10,7 @@ tRDashboardApp.directive('gridDirective', ['$localStorage', '$state', function($
         },
         compile: function(element, attributes) {
             debugger;
+            sharedService.toggleLoader(true);
             element.find('table').attr('id', attributes.gdId);
         },
         controller: ['$scope', 'sharedService', '$http', function($scope, sharedService, $http) {
@@ -18,16 +19,13 @@ tRDashboardApp.directive('gridDirective', ['$localStorage', '$state', function($
                 sharedService.callGetUrlTofetch($scope.gridData).then(function(resp) {
                         debugger;
                         $("#" + $scope.gdId).DataTable({
-                            data: resp.data.result,
+                            data: resp.data,
                             columns: [
-                                { title: "Name" },
-                                { title: "Position" },
-                                { title: "Office" },
-                                { title: "Extn." },
-                                { title: "Start date" },
-                                { title: "Salary" }
+                                { title: "User Name", data: "username" },
+                                { title: "Email", data: "email" }
                             ]
                         });
+                        sharedService.toggleLoader(false);
                     },
                     function(error) {});
             }

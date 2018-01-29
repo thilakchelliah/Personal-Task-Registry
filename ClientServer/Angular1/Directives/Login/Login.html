@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <a class="pull-right" href="#">Forgot password?</a>
                             <label for="inputPassword">Password</label>
-                            <input type="password" class="form-control" id="inputPassword" ng-model="password" required="required" ng-focus="invalidUser=false"></input>
+                            <input type="password" class="form-control" id="inputPassword" ng-model="password" required="required" ng-focus="invalidUser=false"  ng-keydown="$event.keyCode === 13 && ValidateAndLogin()"></input>
                         </div>
                         <div class="checkbox pull-right">
                             <label>
