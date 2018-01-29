@@ -38,7 +38,8 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-tap-event-plugin": "^2.0.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "summernote": "^0.8.9"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
