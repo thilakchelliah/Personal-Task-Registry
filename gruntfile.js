@@ -32,10 +32,12 @@ module.exports = function(grunt) {
           'ClientServer/Angular1/Service/Auth.service.min.js': 'ClientServer/Angular1/Service/Auth.service.js',
           'ClientServer/Angular1/Service/login.service.min.js': 'ClientServer/Angular1/Service/login.service.js',
           'ClientServer/Angular1/Service/shared.service.min.js': 'ClientServer/Angular1/Service/shared.service.js',
+          'ClientServer/Angular1/Service/BlogManager.service.min.js': 'ClientServer/Angular1/Service/BlogManager.service.js',
           'ClientServer/Angular1/Directives/SignUp/SignUp.directive.min.js': 'ClientServer/Angular1/Directives/SignUp/SignUp.directive.js',
           'ClientServer/Angular1/Directives/Login/Login.directive.min.js': 'ClientServer/Angular1/Directives/Login/Login.directive.js',
           'ClientServer/Angular1/Directives/shared/common.directive.min.js':'ClientServer/Angular1/Directives/shared/common.directive.js',
           'ClientServer/Angular1/Directives/shared/Grid/grid.directive.min.js':'ClientServer/Angular1/Directives/shared/Grid/grid.directive.js',
+          'ClientServer/Angular1/Directives/BlogManager/BlogPostManager.directive.min.js':'ClientServer/Angular1/Directives/BlogManager/BlogPostManager.directive.js',
           'ClientServer/Angular1/AngApp.min.js': 'ClientServer/Angular1/AngApp.js',
         }
       }
@@ -55,10 +57,12 @@ module.exports = function(grunt) {
           'ClientServer/Angular1/Service/BlogList.service.min.js',
           'ClientServer/Angular1/Service/login.service.min.js',
           'ClientServer/Angular1/Service/shared.service.min.js',
+          'ClientServer/Angular1/Service/BlogManager.service.min.js',
           'ClientServer/Angular1/Directives/SignUp/SignUp.directive.min.js',
           'ClientServer/Angular1/Directives/Login/Login.directive.min.js',
           'ClientServer/Angular1/Directives/shared/common.directive.min.js',
-          'ClientServer/Angular1/Directives/shared/Grid/grid.directive.min.js'
+          'ClientServer/Angular1/Directives/shared/Grid/grid.directive.min.js',
+          'ClientServer/Angular1/Directives/BlogManager/BlogPostManager.directive.min.js'
         ],
         dest: 'public/javascripts/Global.min.js',
       },

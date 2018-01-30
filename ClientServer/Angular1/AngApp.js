@@ -54,6 +54,15 @@ tRDashboardApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 
                         $rootScope.dashBoardTitle = "User Controller";
                     }
                 ]
+            })
+            .state('home.BlogManager', {
+                url: '/BlogManager',
+                templateUrl: 'App/dashboardWidgets/blogManager.html',
+                controller: ['$rootScope',
+                    function($rootScope) {
+                        $rootScope.dashBoardTitle = "Blog Manager";
+                    }
+                ]
             });
 
 

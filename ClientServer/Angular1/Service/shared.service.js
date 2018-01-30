@@ -14,7 +14,11 @@ sharedModule.service('sharedService', ['$http', function($http) {
         else
             $(".loading").hide();
     }
+    var _generateUniqueId = function() {
+        return Math.floor(new Date().getTime() / 1000);
+    }
     sharedService.callGetUrlTofetch = _callGetUrlTofetch;
     sharedService.toggleLoader = _toggleLoader;
+    sharedService.generateUniqueId = _generateUniqueId;
     return sharedService;
 }]);
