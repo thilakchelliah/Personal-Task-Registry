@@ -19,8 +19,16 @@
         </div>
         <div class="card-block tab-pane fade" id="blogManager">
             <h4 class="card-title">Blog Manager</h4>
-            <p class="card-text">With supporting text below as a mhgfhjgfhjgfhgfdghfdghfdgfdgfdadditional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="table-responsive">
+                <grid-directive gd-id="blogGrid" grid-data="'/apiS/Blog/FetchAll'" gd-type="'URL'"  coloumn-data="blogGrid">
+                    <thead>
+                        <tr>
+                            <th>username</th>
+                            <th>email</th>
+                        </tr>
+                    </thead>
+                </grid-directive>
+            </div>
         </div>
     </div>
 </div>

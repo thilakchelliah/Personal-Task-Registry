@@ -1,4 +1,17 @@
 /*global tRDashboardApp,$*/
+var globalColData = {
+    userGrid: [{ 'title': 'User Name', 'data': 'username' }, { 'title': 'Email', 'data': 'email' }],
+    blogGrid: [{ 'title': 'Post Title', 'data': 'title' },
+        {
+            'title': 'Preview',
+            'data': '_id',
+            "render": function(data, type, row, meta) {
+                return '<button ng-click="OpenPreviewWindow(data)">Preview</Button>';
+            }
+        }
+    ]
+}
+
 tRDashboardApp.directive('gridDirective', ['$localStorage', 'sharedService', '$state', function($localStorage, sharedService, $state) {
     return {
         restrict: 'E',
@@ -6,7 +19,8 @@ tRDashboardApp.directive('gridDirective', ['$localStorage', 'sharedService', '$s
         scope: {
             gdId: '@',
             gridData: '=',
-            gdType: '='
+            gdType: '=',
+            coloumnData: "@"
         },
         compile: function(element, attributes) {
             debugger;
@@ -20,10 +34,7 @@ tRDashboardApp.directive('gridDirective', ['$localStorage', 'sharedService', '$s
                         debugger;
                         $("#" + $scope.gdId).DataTable({
                             data: resp.data,
-                            columns: [
-                                { title: "User Name", data: "username" },
-                                { title: "Email", data: "email" }
-                            ]
+                            columns: globalColData[$scope.coloumnData]
                         });
                         sharedService.toggleLoader(false);
                     },

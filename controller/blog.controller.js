@@ -1,15 +1,13 @@
 var mongoose = require('mongoose'),
-    bcrypt = require('bcrypt'),
-    jwt = require('jsonwebtoken'),
     BlogPost = mongoose.model('BlogPost');
 
 exports.AddBlogPost = function(req, res) {
-    if (!req.body.Title) {
+    if (!req.body.title) {
         res.status(400).send({ message: "Title cannot be Empty" });
     }
     else {
         var BlogPostData = new BlogPost({
-            title: req.body.Title,
+            title: req.body.title,
             htmlString: req.body.htmlString,
             user:req.body._userId,
             createdDate: new Date().toDateString(),
@@ -31,7 +29,7 @@ exports.AddBlogPost = function(req, res) {
 
 
 
-exports.updateBlogPost = function(req, res) {
+exports.UpdateBlogPost = function(req, res) {
     BlogPost.findById(req.body.id, (err, BlogPost) => {  
         // Handle any possible database errors
         if (err) {

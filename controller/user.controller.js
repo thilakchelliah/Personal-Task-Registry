@@ -71,7 +71,7 @@ exports.CheckSignUpCred = function(req, res) {
                 var token = jwt.sign(user[0], global.config.jwt_secret, {
                     expiresIn: 1440 // expires in 1 hour
                 });
-                return res.send({ result: "success", message: "valid User", token: token });
+                return res.send({ result: "success", message: "valid User", token: token, userDataId: user[0]._id });
             }
             else {
 

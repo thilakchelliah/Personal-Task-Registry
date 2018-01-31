@@ -3,7 +3,8 @@
 tRDashboardApp.service('blogManagerService', ['$http', function ($http) {
     var blogManagerService = {};
     var _createUser = function (data) {
-        return $http.post('api/User/Create', data);
+        debugger;
+        return $http.post('apiS/Blog/Create', data);
     };
    
     blogManagerService.CreateUser = _createUser;

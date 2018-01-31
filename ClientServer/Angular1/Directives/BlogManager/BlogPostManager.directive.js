@@ -8,7 +8,7 @@ tRDashboardApp.directive('blogPostManagerDirective', ['blogManagerService', '$lo
         },
         templateUrl: 'Angular1/Directives/BlogManager/BlogPostManager.html',
 
-        controller: ['$scope', '$http', 'sharedService', function($scope, $http, sharedService) {
+        controller: ['$scope', '$http', 'sharedService', '$rootScope', function($scope, $http, sharedService, $rootScope) {
             debugger;
             $scope.init = function() {
                 $scope.buttonText = $scope.functionType === "add" ? "Add New " : "Update ";
@@ -23,8 +23,15 @@ tRDashboardApp.directive('blogPostManagerDirective', ['blogManagerService', '$lo
 
             //function to add or update post
             $scope.addOrUpdatePost = function() {
-                
+                debugger;
                 var content = $("#summernote").summernote('code');
+                var data = {
+                    title: $scope.title,
+                    htmlContent: encodeURI(content),
+                    userId: $rootScope.UserId
+
+                };
+                blogManagerService.CreateUser(data);
             }
             $scope.init();
 

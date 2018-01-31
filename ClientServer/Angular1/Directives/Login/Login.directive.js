@@ -4,7 +4,7 @@ tRDashboardApp.directive('loginDirective', ['loginService', '$localStorage', '$s
         restrict: 'E',
         templateUrl: 'Angular1/Directives/Login/Login.html',
 
-        controller: ['$scope', '$http', 'sharedService', function($scope, $http, sharedService) {
+        controller: ['$scope', '$http', 'sharedService', '$rootScope', function($scope, $http, sharedService, $rootScope) {
             debugger;
             $scope.invalidUser = false;
             $scope.ValidateAndLogin = function() {
@@ -13,15 +13,16 @@ tRDashboardApp.directive('loginDirective', ['loginService', '$localStorage', '$s
                 var password = $scope.password;
                 loginService.ValidateAndLogin(username, password).then(
                     function(response) {
+                        debugger;
                         if (response.data.token) {
                             // store username and token in local storage to keep user logged in between page refreshes
-                            $localStorage.currentUser = { username: username, token: response.data.token };
-
+                            $localStorage.currentUser = { username: username, token: response.data.token, expiryTime: response.data.expirytime };
+                            $rootScope.UserId = response.data.userDataId;
                             // add jwt token to auth header for all requests made by the $http service
                             $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token;
                             sharedService.toggleLoader(false);
                             $state.go('home.admin');
-                            
+
                         }
                         else {
                             sharedService.toggleLoader(false);
