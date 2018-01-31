@@ -9,18 +9,18 @@ exports.AddBlogPost = function(req, res) {
     }
     else {
         var BlogPostData = new BlogPost({
-            title: req.body.email,
-            htmlString: req.body.username,
-            password: hashedPass,
+            title: req.body.Title,
+            htmlString: req.body.htmlString,
+            user:req.body._userId,
             createdDate: new Date().toDateString(),
             updatedDate: new Date().toDateString()
         });
 
-        userCurrent.save(function(err, data) {
+        BlogPostData.save(function(err, data) {
             console.log(data);
             if (err) {
                 console.log(err);
-                res.status(500).send({ message: "Some error occurred while creating the Note." });
+                res.status(500).send({ message: "Some error occurred while creating the Blog Post." });
             }
             else {
                 res.send(data);
@@ -30,67 +30,41 @@ exports.AddBlogPost = function(req, res) {
 };
 
 
-//validators
 
-exports.CheckIfUserNameExist = function(req, res) {
-    User.find({ username: req.query.userName }, function(err, user) {
+exports.updateBlogPost = function(req, res) {
+    BlogPost.findById(req.body.id, (err, BlogPost) => {  
+        // Handle any possible database errors
         if (err) {
-            res.send(err);
+            res.status(500).send(err);
+        } else {
+            // Update each attribute with any possible attribute that may have been submitted in the body of the request
+            // If that attribute isn't in the request body, default back to whatever it was before.
+            BlogPost.title = req.body.title || BlogPost.title;
+            BlogPost.htmlString = req.body.htmlString || BlogPost.htmlString;
+            BlogPost.updatedDate = new Date().toDateString();
+    
+            // Save the updated document back to the database
+            BlogPost.save((err, BlogPost) => {
+                if (err) {
+                    res.status(500).send(err)
+                }
+                res.status(200).send(BlogPost);
+            });
         }
-        else if (user.length != 0) {
-            return res.send("Duplicate Username,Please choose another one!");
-        }
-        else
-            return res.send("");
-    });
-};
-
-exports.checkIfEmailExist = function(req, res) {
-    User.find({ email: req.query.email }, function(err, email) {
-        if (err) {
-            res.send(err);
-        }
-        else if (email.length != 0) {
-            return res.send("Email already used,Please choose another one!");
-        }
-        else
-            return res.send("");
-    });
-};
-
-exports.CheckSignUpCred = function(req, res) {
-
-    User.find({ username: req.query.username }).lean().exec(function(err, user) {
-        if (err) {
-            res.send({ result: "Error", message: err });
-        }
-        else if (user.length != 0) {
-            if (bcrypt.compareSync(req.query.password, user[0].password)) {
-                console.log(user);
-                var token = jwt.sign(user[0], global.config.jwt_secret, {
-                    expiresIn: 1440 // expires in 1 hour
-                });
-                return res.send({ result: "success", message: "valid User", token: token });
-            }
-            else {
-
-                return res.send({ result: "Error", message: "Wrong Password" });
-            }
-        }
-        else
-            return res.send({ result: "Error", message: "Invalid User" });
     });
 };
 
 
-exports.GetUserData = function(req, res) {
-    User.find({}, function(err, userData) {
+
+
+exports.GetAllBlogPost = function(req, res) {
+    BlogPost.find({}, function(err, BlogPost) {
         if (err) {
             res.send(err);
         }
 
         else
-            res.json(userData);
+            res.json(BlogPost);
     });
 
 };
