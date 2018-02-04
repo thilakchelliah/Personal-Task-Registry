@@ -13,6 +13,7 @@ router.get('/User/FetchAll',userController.GetUserData);
 
 router.post('/Blog/Create',blogController.AddBlogPost);
 router.post('/Blog/Update',blogController.UpdateBlogPost);
+router.post('/Blog/Delete',blogController.DeleteBlogPost);
 router.get('/Blog/FetchAll',blogController.GetAllBlogPost);
 
 

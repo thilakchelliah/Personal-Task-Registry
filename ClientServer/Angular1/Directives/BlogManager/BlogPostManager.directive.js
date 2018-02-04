@@ -27,7 +27,7 @@ tRDashboardApp.directive('blogPostManagerDirective', ['blogManagerService', '$lo
                 var content = $("#summernote").summernote('code');
                 var data = {
                     title: $scope.title,
-                    htmlContent: encodeURI(content),
+                    htmlContent: content,
                     userId: $rootScope.UserId
 
                 };

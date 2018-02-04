@@ -1,20 +1,20 @@
 var mongoose = require('mongoose'),
     BlogPost = mongoose.model('BlogPost');
 
-exports.AddBlogPost = function(req, res) {
+exports.AddBlogPost = function (req, res) {
     if (!req.body.title) {
         res.status(400).send({ message: "Title cannot be Empty" });
     }
     else {
         var BlogPostData = new BlogPost({
             title: req.body.title,
-            htmlString: req.body.htmlString,
-            user:req.body._userId,
+            htmlString: req.body.htmlContent,
+            user: req.body._userId,
             createdDate: new Date().toDateString(),
             updatedDate: new Date().toDateString()
         });
 
-        BlogPostData.save(function(err, data) {
+        BlogPostData.save(function (err, data) {
             console.log(data);
             if (err) {
                 console.log(err);
@@ -29,8 +29,8 @@ exports.AddBlogPost = function(req, res) {
 
 
 
-exports.UpdateBlogPost = function(req, res) {
-    BlogPost.findById(req.body.id, (err, BlogPost) => {  
+exports.UpdateBlogPost = function (req, res) {
+    BlogPost.findById(req.body.id, (err, BlogPost) => {
         // Handle any possible database errors
         if (err) {
             res.status(500).send(err);
@@ -40,7 +40,7 @@ exports.UpdateBlogPost = function(req, res) {
             BlogPost.title = req.body.title || BlogPost.title;
             BlogPost.htmlString = req.body.htmlString || BlogPost.htmlString;
             BlogPost.updatedDate = new Date().toDateString();
-    
+
             // Save the updated document back to the database
             BlogPost.save((err, BlogPost) => {
                 if (err) {
@@ -52,11 +52,20 @@ exports.UpdateBlogPost = function(req, res) {
     });
 };
 
+exports.DeleteBlogPost = function (req, res) {
+    BlogPost.findByIdAndRemove(req.body.id,(err) => {
+        if (err) {
+            res.send(err);
+        }
+
+        else
+            res.json("Success");
+    })
+}
 
 
-
-exports.GetAllBlogPost = function(req, res) {
-    BlogPost.find({}, function(err, BlogPost) {
+exports.GetAllBlogPost = function (req, res) {
+    BlogPost.find({}, function (err, BlogPost) {
         if (err) {
             res.send(err);
         }

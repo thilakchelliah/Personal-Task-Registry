@@ -1,29 +1,31 @@
 /*global techRegistryApp*/
-  techRegistryApp.controller('blogListController', ['$scope',
+  techRegistryApp.controller('blogListController', ['$scope','sharedService','$sce',
 
-      function blogListController($scope) {
+      function blogListController($scope,sharedService,$sce) {
           $scope.blogList = [];
+          debugger;
 
-          var blogObject = function() {
+          var blogObject = function(title,htmlContent,User) {
               return {
-                  title: "Dosis Best Google Web Fonts",
-                  content: "test",
-                  user:"Thilak"
+                  title: title,
+                  content:$sce.trustAsHtml( htmlContent),
+                  user:User
               };
           };
           var init = function() {
-              $scope.blogList.push(blogObject());
-              $scope.blogList.push(blogObject());
-              $scope.blogList.push(blogObject());
-              $scope.blogList.push(blogObject());
-              $scope.blogList.push(blogObject());
-              $scope.blogList.push(blogObject());
-              $scope.blogList.push(blogObject());
-              $scope.blogList.push(blogObject());
-              $scope.blogList.push(blogObject());
-              $scope.blogList.push(blogObject());
-              $scope.blogList.push(blogObject());
-              $scope.blogList.push(blogObject());
+            sharedService.FetchAllBlog().then(
+                function(response){
+                    debugger;
+                    $(response.data).each(function(){
+                        $scope.blogList.push(blogObject(this.title,this.htmlString,this.user));
+                    })
+                    debugger;
+                },
+                function(err){
+
+                });
+            
+              
           };
           init();
       }
