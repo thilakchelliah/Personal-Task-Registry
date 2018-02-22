@@ -9,14 +9,14 @@ sharedModule.service('sharedService', ['$http', function ($http) {
 
     //method to handle loader
     var _toggleLoader = function (showOrHide) {
-        if (showOrHide == true)
+        if (showOrHide === true)
             $(".loading").show();
         else
             $(".loading").hide();
-    }
+    };
     var _generateUniqueId = function () {
         return Math.floor(new Date().getTime() / 1000);
-    }
+    };
 
     var _fetchAllBlog = function () {
         return $http.get('/api/Blog/FetchAll');

@@ -4,6 +4,6 @@ techRegistryApp.controller('loginController', ['$scope', '$localStorage', '$loca
         $scope.logout = function() {
             $localStorage.currentUser.token = null;
             $location.path('/login');
-        }
+        };
     }
 ]);

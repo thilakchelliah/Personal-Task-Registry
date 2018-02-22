@@ -7,20 +7,18 @@
       <ul class="list-inline list-unstyled blogRelat">
         <li class="list-inline-item"><span><i class="fa fa-user" aria-hidden="true"></i> {{blogObj.user}} </span></li>
         <li class="list-inline-item">|</li>
-        <li class="list-inline-item"><span><i class="fa fa-calendar" aria-hidden="true"></i> 2 days, 8 hours </span></li>
+        <li class="list-inline-item"><span><i class="fa fa-calendar" aria-hidden="true"></i>{{blogObj.date | date:'MMM d, y h:mm:ss a' }}</span></li>
         <li class="list-inline-item">|</li>
         <li class="list-inline-item"><span><i class="fa fa-comment" aria-hidden="true"></i> 2 comments</span></li>
 
       </ul>
-      <p class="card-text" ng-bind-html="blogObj.content"></p>
-      <a href="#" class="btn btn-primary pull-right">Read More</a>
+      <p class="card-text" ng-bind-html="blogObj.previewText"></p>
+      <a href="#" class="btn btn-primary pull-right" ng-click="openBlogPost('{{blogObj.urlId}}')">Read More</a>
 
     </div>
     <div class="card-footer text-muted">
-      <ul class="tags">
-        <li><a href="#" class="tag">HTML</a></li>
-        <li><a href="#" class="tag">CSS</a></li>
-        <li><a href="#" class="tag">JavaScript</a></li>
+      <ul class="tags" ng-repeat="tag in blogObj.tagData">
+        <li><a href="#" class="tag">{{tag}}</a></li>
       </ul>
     </div>
   </div>

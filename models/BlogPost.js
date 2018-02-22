@@ -7,6 +7,15 @@ var BlogPostSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    previewText: {
+        type: String,
+    },
+    tagData: {
+        type: String,
+    },
+    urlId:{
+        type:String
+    },
     user: [{ type: Schema.ObjectId, ref: 'User' }],
     htmlString: {
         type: String

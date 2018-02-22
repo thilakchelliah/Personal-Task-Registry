@@ -1,4 +1,4 @@
-/*global tRDashboardApp,$*/
+/*global tRDashboardApp,$,bootbox*/
 tRDashboardApp.directive('blogPostManagerDirective', ['blogManagerService', '$localStorage', '$state', function(blogManagerService, $localStorage, $state) {
     return {
         restrict: 'E',
@@ -9,7 +9,8 @@ tRDashboardApp.directive('blogPostManagerDirective', ['blogManagerService', '$lo
         templateUrl: 'Angular1/Directives/BlogManager/BlogPostManager.html',
 
         controller: ['$scope', '$http', 'sharedService', '$rootScope', function($scope, $http, sharedService, $rootScope) {
-            debugger;
+
+            $scope.tagArray = [];
             $scope.init = function() {
                 $scope.buttonText = $scope.functionType === "add" ? "Add New " : "Update ";
                 $(document).ready(function() {
@@ -18,21 +19,56 @@ tRDashboardApp.directive('blogPostManagerDirective', ['blogManagerService', '$lo
                         height: 300,
                     });
                 });
-            }
+            };
 
 
             //function to add or update post
             $scope.addOrUpdatePost = function() {
-                debugger;
+                
+                var tokenObj=$localStorage.currentUser;
                 var content = $("#summernote").summernote('code');
                 var data = {
                     title: $scope.title,
                     htmlContent: content,
-                    userId: $rootScope.UserId
-
+                    userId: tokenObj.userId,
+                    tagData: $scope.tagArray.join(','),
+                    previewText: $scope.previewText
                 };
-                blogManagerService.CreateUser(data);
-            }
+                var saveDialog = bootbox.dialog({
+                    title: 'Please Wait!',
+                    message: '<p><i class="fa fa-spin fa-spinner"></i> processing...</p>',
+                    closeButton: false,
+                    buttons: {
+                        ok: {
+                            label: "Ok",
+                            className: 'btn-info',
+                            callback: function() {
+                                $('#summernote').summernote('reset');
+                            }
+                        }
+                    }
+                });
+                blogManagerService.CreateBlogPost(data).then(
+                    function(resp) {
+                        saveDialog.find('.bootbox-body').html('Blog Successfully Created/Updated');
+                        $scope.title = "";
+                        $scope.previewText = "";
+                        $scope.$broadcast('deleteAllTags');
+                        var dtable = $("#blogGrid").DataTable();
+                        sharedService.callGetUrlTofetch('/apiS/Blog/FetchAll').then(function(resp) {
+                            dtable.clear();
+                            dtable.rows.add(resp.data);
+                            dtable.draw();
+                        });
+
+                    },
+                    function(err) {
+                        saveDialog.find('.bootbox-body').html('Error Happened');
+                    });
+            };
+            $scope.$on('sendTagData', function(event, data) {
+                $scope.tagArray = data;
+            });
             $scope.init();
 
         }]

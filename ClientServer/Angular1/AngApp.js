@@ -17,6 +17,10 @@ techRegistryApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
         .state('main', {
             url: '/main',
             templateUrl: 'App/ContentMaster/Content.html'
+        })
+        .state('BlogPost', {
+            url: '/BlogPost/:urlId',
+            templateUrl: 'App/ContentMaster/Content.html'
         });
 }]);
 
@@ -33,7 +37,7 @@ tRDashboardApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 
                 url: '/admin',
                 template: '',
                 controller: ['$rootScope',
-                    function($rootScope, ) {
+                    function($rootScope) {
                         $rootScope.dashBoardTitle = "Admin";
                     }
                 ]
@@ -70,7 +74,7 @@ tRDashboardApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 
     }])
     .run(['$rootScope', '$state', '$localStorage', 'sharedService', '$location', function($rootScope, $state, $localStorage, sharedService, $location) {
         $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams, options) {
-            debugger;
+            
             sharedService.toggleLoader(true);
             if (toState.name == 'login' && $localStorage.currentUser) {
                 if ($localStorage.currentUser.token) {
@@ -85,15 +89,15 @@ tRDashboardApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 
         });
         $rootScope.$on('$stateChangeSuccess',
             function(event, toState, toParams, fromState, fromParams) {
-                debugger;
+                
                 sharedService.toggleLoader(false);
             });
 
         $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-            debugger;
+            
             sharedService.toggleLoader(false);
             event.preventDefault();
-            $state.get('error').error = { code: 123, description: 'Exception stack trace' }
+            $state.get('error').error = { code: 123, description: 'Exception stack trace' };
             return $state.go('error');
         });
     }]);
