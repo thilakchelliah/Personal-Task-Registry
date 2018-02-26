@@ -1,4 +1,4 @@
-<div class="container abel-font >
+<div class="container abel-font">
 
   <div class="row">
 
@@ -17,18 +17,23 @@
       <hr>
 
       <!-- Date/Time -->
-      <p>Posted on January 1, 2018 at 12:00 PM</p>
+      <p>Posted On {{createdDate | date:'MMM d, y h:mm:ss a' }}</p>
 
 
 
       <hr>
 
       <!-- Post Content -->
-      <div ng-bind-html="htmlString" ></div>
+      <div ng-bind-html="htmlString"></div>
 
     </div>
 
   </div>
-  <!-- /.row -->
+  <div class="container abel-font">
+
+    <div class="row">
+      <disqus-comment style="width:100%;"></disqus-comment>
+    </div>
+  </div>
 
 </div>
