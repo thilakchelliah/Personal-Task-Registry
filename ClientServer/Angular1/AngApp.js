@@ -7,7 +7,8 @@ var techRegistryApp = angular.module("trApp.Main", ['ui.router', 'ngStorage', 's
 var tRDashboardApp = angular.module("trApp.Dashboard", ['ui.router', 'ngStorage', 'ui.router.state.events', 'shared']);
 
 
-techRegistryApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
+techRegistryApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider,
+    $httpProvider) {
 
     $urlRouterProvider.otherwise('/main');
 
@@ -20,8 +21,9 @@ techRegistryApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
         })
         .state('BlogPost', {
             url: '/BlogPost/:urlId',
-            templateUrl: 'App/ContentMaster/Content.html'
+            templateUrl: 'App/ContentMaster/BlogPostContent.html'
         });
+
 }]);
 
 tRDashboardApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -74,7 +76,7 @@ tRDashboardApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 
     }])
     .run(['$rootScope', '$state', '$localStorage', 'sharedService', '$location', function($rootScope, $state, $localStorage, sharedService, $location) {
         $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams, options) {
-            
+
             sharedService.toggleLoader(true);
             if (toState.name == 'login' && $localStorage.currentUser) {
                 if ($localStorage.currentUser.token) {
@@ -89,12 +91,12 @@ tRDashboardApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 
         });
         $rootScope.$on('$stateChangeSuccess',
             function(event, toState, toParams, fromState, fromParams) {
-                
+
                 sharedService.toggleLoader(false);
             });
 
         $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-            
+
             sharedService.toggleLoader(false);
             event.preventDefault();
             $state.get('error').error = { code: 123, description: 'Exception stack trace' };

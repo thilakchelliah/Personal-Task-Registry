@@ -84,3 +84,20 @@ exports.GetAllBlogPost = function(req, res) {
         });
 
 };
+
+exports.GetOneBlogPost = function(req, res) {
+
+
+    BlogPost
+        .findOne({urlId:req.query.urlId})
+        .populate('user')
+        .exec(function(err, BlogPost) {
+            if (err) {
+                res.send(err);
+            }
+
+            else
+                res.json(BlogPost);
+        });
+
+};

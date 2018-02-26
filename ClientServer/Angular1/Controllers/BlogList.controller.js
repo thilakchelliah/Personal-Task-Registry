@@ -1,11 +1,11 @@
 /*global techRegistryApp,$*/
-techRegistryApp.controller('blogListController', ['$scope', 'sharedService', '$sce',
+techRegistryApp.controller('blogListController', ['$scope', 'sharedService', '$sce', '$state',
 
-    function blogListController($scope, sharedService, $sce) {
+    function blogListController($scope, sharedService, $sce, $state) {
         $scope.blogList = [];
-    
-        $scope.openBlogPost=function (urlId) {
-           $state.go('home');
+
+        $scope.openBlogPost = function(urlId) {
+            $state.go('BlogPost', { 'urlId': urlId });
         };
 
         var blogObject = function(title, previewText, User, createdDate, urlId, tagData) {

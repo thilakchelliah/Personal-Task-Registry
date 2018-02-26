@@ -1,22 +1,36 @@
-/*global tRDashboardApp,$,bootbox*/
-tRDashboardApp.directive('blogPostFull', ['blogManagerService', '$localStorage', '$state', function(blogManagerService, $localStorage, $state) {
+/*global techRegistryApp,$,bootbox*/
+techRegistryApp.directive('blogPostFull', ['$localStorage', function($localStorage) {
     return {
         restrict: 'E',
         scope: {
             functionType: "@",
-            postId: "@"
+            urlId: "="
         },
         templateUrl: 'Angular1/Directives/BlogManager/BlogPostFull.html',
 
-        controller: ['$scope', '$http', 'sharedService', '$rootScope', function($scope, $http, sharedService, $rootScope) {
-
+        controller: ['$scope', '$http', 'sharedService', '$stateParams', '$sce', function($scope, $http, sharedService, $stateParams, $sce) {
+            debugger;
             $scope.tagArray = [];
             $scope.init = function() {
-              
+                sharedService.FetchBlogDetails($stateParams.urlId).then(
+                    function(response) {
+                        debugger;
+                        $scope.title = response.data.title;
+                        $scope.previewText = response.data.previewText;
+                        $scope.user = (response.data.user)[0].username;
+                        $scope.createdDate = response.data.createdDate;
+                        $scope.urlId = response.data.urlId;
+                        $scope.tagData = response.data.tagData;
+                        $scope.htmlString = $sce.trustAsHtml(response.data.htmlString);
+                    },
+
+                    function(err) {
+
+                    });
             };
 
 
-          
+
             $scope.init();
 
         }]

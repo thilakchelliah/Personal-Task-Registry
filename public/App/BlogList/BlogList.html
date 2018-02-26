@@ -13,12 +13,12 @@
 
       </ul>
       <p class="card-text" ng-bind-html="blogObj.previewText"></p>
-      <a href="#" class="btn btn-primary pull-right" ng-click="openBlogPost('{{blogObj.urlId}}')">Read More</a>
+      <a href="#" class="btn btn-primary pull-right" ng-click="openBlogPost(blogObj.urlId)">Read More</a>
 
     </div>
     <div class="card-footer text-muted">
-      <ul class="tags" ng-repeat="tag in blogObj.tagData">
-        <li><a href="#" class="tag">{{tag}}</a></li>
+      <ul class="tags" >
+        <li><a href="#" ng-repeat="tag in blogObj.tagData" class="tag">{{tag}}</a></li>
       </ul>
     </div>
   </div>

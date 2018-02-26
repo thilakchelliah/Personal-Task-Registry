@@ -12,5 +12,7 @@ router.get('/User/checkEmail', userController.checkIfEmailExist);
 router.get('/User/CheckSignUpCred',userController.CheckSignUpCred);
 
 router.get('/Blog/FetchAll',blogController.GetAllBlogPost);
+router.get('/Blog/FetchOne',blogController.GetOneBlogPost);
+
 
 module.exports = router;

@@ -2,6 +2,10 @@ body{
     font-family: 'Quicksand', sans-serif;
 }
 
+.abel-font *{
+  font-family: 'Abel', sans-serif !important;
+}
+
 /* Absolute Center Spinner */
 .loading {
   display: none;

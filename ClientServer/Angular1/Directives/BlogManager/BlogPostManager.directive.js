@@ -17,6 +17,8 @@ tRDashboardApp.directive('blogPostManagerDirective', ['blogManagerService', '$lo
                     $('#summernote').summernote({
                         dialogsInBody: true,
                         height: 300,
+                        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','Abel'],
+                        fontNamesIgnoreCheck: ['Abel']
                     });
                 });
             };
@@ -24,8 +26,8 @@ tRDashboardApp.directive('blogPostManagerDirective', ['blogManagerService', '$lo
 
             //function to add or update post
             $scope.addOrUpdatePost = function() {
-                
-                var tokenObj=$localStorage.currentUser;
+
+                var tokenObj = $localStorage.currentUser;
                 var content = $("#summernote").summernote('code');
                 var data = {
                     title: $scope.title,
