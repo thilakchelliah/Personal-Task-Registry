@@ -20,7 +20,7 @@
         <div class="card-block tab-pane fade" id="blogManager">
             <h4 class="card-title">Blog Manager</h4>
             <div class="table-responsive">
-                <grid-directive id="blogGridWrapDir" gd-id="blogGrid" grid-data="'/apiS/Blog/FetchAll'" gd-type="'URL'"  coloumn-data="blogGrid" ver="1">
+                <grid-directive id="blogGridWrapDir" gd-id="blogGrid" grid-data="'/apiS/Blog/FetchAll'" gd-type="'URL'" coloumn-data="blogGrid" ver="1">
                     <thead>
                         <tr>
                             <th>username</th>
@@ -32,3 +32,26 @@
         </div>
     </div>
 </div>
+
+<div class="modalGrid fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <blog-post-full url-id=""></blog-post-full>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>

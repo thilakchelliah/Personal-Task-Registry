@@ -21,7 +21,12 @@ techRegistryApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
         })
         .state('BlogPost', {
             url: '/BlogPost/:urlId',
-            templateUrl: 'App/ContentMaster/BlogPostContent.html'
+            templateUrl: 'App/ContentMaster/BlogPostContent.html',
+            controller: ['$rootScope', '$stateParams',
+                function($scope, $statesParams) {
+                    $scope.urlId = $statesParams.urlId;
+                }
+            ]
         });
 
 }]);

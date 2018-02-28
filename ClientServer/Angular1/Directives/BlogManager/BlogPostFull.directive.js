@@ -4,15 +4,15 @@ techRegistryApp.directive('blogPostFull', ['$localStorage', function($localStora
         restrict: 'E',
         scope: {
             functionType: "@",
-            urlId: "="
+            urlId: "@"
         },
         templateUrl: 'Angular1/Directives/BlogManager/BlogPostFull.html',
-
+       
         controller: ['$scope', '$http', 'sharedService', '$stateParams', '$sce', function($scope, $http, sharedService, $stateParams, $sce) {
             debugger;
             $scope.tagArray = [];
             $scope.init = function() {
-                sharedService.FetchBlogDetails($stateParams.urlId).then(
+                sharedService.FetchBlogDetails($scope.urlId).then(
                     function(response) {
                         debugger;
                         $scope.title = response.data.title;

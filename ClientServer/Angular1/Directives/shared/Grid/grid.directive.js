@@ -1,12 +1,12 @@
-/*global tRDashboardApp,$,angular*/
+/*global tRDashboardApp,$,angular,bootbox*/
 var globalColData = {
     userGrid: [{ 'title': 'User Name', 'data': 'username' }, { 'title': 'Email', 'data': 'email' }],
-    blogGrid: [{ 'title': 'Post Title', 'data': 'title' },{ 'title': 'Preview', 'data': 'previewText' },{ 'title': 'Related Tags', 'data': 'tagData' },
+    blogGrid: [{ 'title': 'Post Title', 'data': 'title' }, { 'title': 'Preview', 'data': 'previewText' }, { 'title': 'Related Tags', 'data': 'tagData' },
         {
             'title': 'Preview',
-            'data': '_id',
+            'data': 'urlId',
             "render": function(data, type, row, meta) {
-                return '<button ng-click="buttonEvent(&quot;blogRowPreview&quot;,data)">Preview</Button>';
+                return '<button ng-click="buttonEvent(&quot;blogGridPreview&quot;,data)">Preview</Button>';
             }
         },
         {
@@ -31,13 +31,13 @@ tRDashboardApp.directive('gridDirective', ['$localStorage', 'sharedService', '$s
             ver: '='
         },
         compile: function(element, attributes) {
-            
+
             sharedService.toggleLoader(true);
             element.find('table').attr('id', attributes.gdId);
         },
         controller: ['$scope', 'sharedService', '$http', '$compile', 'blogManagerService',
             function($scope, sharedService, $http, $compile, blogManagerService) {
-                
+
                 var datatable;
                 if ($scope.gdType == "URL") {
                     sharedService.callGetUrlTofetch($scope.gridData).then(function(resp) {
@@ -54,15 +54,14 @@ tRDashboardApp.directive('gridDirective', ['$localStorage', 'sharedService', '$s
                 }
 
                 $scope.buttonEvent = function(eventFor, data) {
-                    
+
                     switch (eventFor) {
                         case "blogGridPreview":
-
-                            break;
+                         $(".modalGrid").modal("show");
                         case "blogRowDelete":
                             blogManagerService.DeleteBlogRow({ id: data }).then(
                                 function(resp) {
-                                    
+
                                     sharedService.callGetUrlTofetch($scope.gridData).then(function(resp) {
                                         datatable.clear();
                                         datatable.rows.add(resp.data);
@@ -70,7 +69,7 @@ tRDashboardApp.directive('gridDirective', ['$localStorage', 'sharedService', '$s
                                     });
                                 },
                                 function(err) {
-                                    
+
                                 });
                             break;
                     }
