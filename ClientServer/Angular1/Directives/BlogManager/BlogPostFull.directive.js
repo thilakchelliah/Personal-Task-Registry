@@ -1,5 +1,5 @@
-/*global techRegistryApp,$,bootbox*/
-techRegistryApp.directive('blogPostFull', ['$localStorage', function($localStorage) {
+/*global sharedModule,$,bootbox*/
+sharedModule.directive('blogPostFull', ['$localStorage', function($localStorage) {
     return {
         restrict: 'E',
         scope: {

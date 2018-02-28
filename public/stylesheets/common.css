@@ -268,12 +268,7 @@ body{
 .eborder-top {
     border-top: 2px solid #007AFF !important;
 }
-
-.modal-backdrop {
-  z-index: -1;
-}
-
-.modalGrid {
-  position: absolute;
+.ModalPreviewCls .modal-dialog{
+  max-width:700px !important;
 }
 
