@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var multer  = require('multer');
+var mkdirp = require('mkdirp');
 
 global.config = require('./config');
 var jwt = require('jsonwebtoken');
@@ -12,6 +14,24 @@ var localIp = process.env.IP != undefined ? process.env.IP : "localhost";
 var localport = process.env.PORT != undefined ? process.env.PORT : 4500;
 console.log(localIp);
 console.log(localport);
+
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    
+    var dest = 'public/uploads/';
+    mkdirp(dest, function (err) {
+        if (err) cb(err, dest);
+        else cb(null, dest);
+    });
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now()+'-'+file.originalname);
+  }
+});
+
+global.multerUpload = multer({ storage: storage });
+
 
 mongoose.connect("mongodb://" + localIp + ":27017/TechRegistrydb", { useMongoClient: true }, function(err, db) {
   if (err) {
@@ -81,3 +101,5 @@ app.listen(localport);
 
 console.log('Server running at ' + localIp + ':' + localport);
 module.exports = app;
+
+

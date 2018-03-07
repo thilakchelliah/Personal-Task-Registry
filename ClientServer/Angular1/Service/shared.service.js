@@ -28,7 +28,7 @@ sharedModule.service('sharedService', ['$http', function($http) {
             params: {
                 urlId: urlId
             }
-        }
+        };
         return $http.get('/api/Blog/FetchOne', config);
     };
 

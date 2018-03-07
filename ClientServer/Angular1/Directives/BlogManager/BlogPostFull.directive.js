@@ -9,12 +9,12 @@ sharedModule.directive('blogPostFull', ['$localStorage', function($localStorage)
         templateUrl: 'Angular1/Directives/BlogManager/BlogPostFull.html',
        
         controller: ['$scope', '$http', 'sharedService', '$stateParams', '$sce', function($scope, $http, sharedService, $stateParams, $sce) {
-            debugger;
+            
             $scope.tagArray = [];
             $scope.init = function() {
                 sharedService.FetchBlogDetails($scope.urlId).then(
                     function(response) {
-                        debugger;
+                        
                         $scope.title = response.data.title;
                         $scope.previewText = response.data.previewText;
                         $scope.user = (response.data.user)[0].username;

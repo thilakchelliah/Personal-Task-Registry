@@ -33,13 +33,16 @@ module.exports = function(grunt) {
           'ClientServer/Angular1/Service/login.service.min.js': 'ClientServer/Angular1/Service/login.service.js',
           'ClientServer/Angular1/Service/shared.service.min.js': 'ClientServer/Angular1/Service/shared.service.js',
           'ClientServer/Angular1/Service/BlogManager.service.min.js': 'ClientServer/Angular1/Service/BlogManager.service.js',
+          'ClientServer/Angular1/Service/TutorialManager.service.min.js':'ClientServer/Angular1/Service/TutorialManager.service.js',
           'ClientServer/Angular1/Directives/SignUp/SignUp.directive.min.js': 'ClientServer/Angular1/Directives/SignUp/SignUp.directive.js',
           'ClientServer/Angular1/Directives/Login/Login.directive.min.js': 'ClientServer/Angular1/Directives/Login/Login.directive.js',
-          'ClientServer/Angular1/Directives/shared/common.directive.min.js':'ClientServer/Angular1/Directives/shared/common.directive.js',
-          'ClientServer/Angular1/Directives/shared/tagger/tagger.directive.min.js':'ClientServer/Angular1/Directives/shared/tagger/tagger.directive.js',
-          'ClientServer/Angular1/Directives/shared/Disqus/disqus.directive.min.js':'ClientServer/Angular1/Directives/shared/Disqus/disqus.directive.js',
-          'ClientServer/Angular1/Directives/shared/Grid/grid.directive.min.js':'ClientServer/Angular1/Directives/shared/Grid/grid.directive.js',
-          'ClientServer/Angular1/Directives/BlogManager/BlogPostManager.directive.min.js':'ClientServer/Angular1/Directives/BlogManager/BlogPostManager.directive.js',
+          'ClientServer/Angular1/Directives/shared/common.directive.min.js': 'ClientServer/Angular1/Directives/shared/common.directive.js',
+          'ClientServer/Angular1/Directives/shared/tagger/tagger.directive.min.js': 'ClientServer/Angular1/Directives/shared/tagger/tagger.directive.js',
+          'ClientServer/Angular1/Directives/shared/Disqus/disqus.directive.min.js': 'ClientServer/Angular1/Directives/shared/Disqus/disqus.directive.js',
+          'ClientServer/Angular1/Directives/shared/Grid/grid.directive.min.js': 'ClientServer/Angular1/Directives/shared/Grid/grid.directive.js',
+          'ClientServer/Angular1/Directives/BlogManager/BlogPostManager.directive.min.js': 'ClientServer/Angular1/Directives/BlogManager/BlogPostManager.directive.js',
+          'ClientServer/Angular1/Directives/BlogManager/BlogPostFull.directive.min.js': 'ClientServer/Angular1/Directives/BlogManager/BlogPostFull.directive.js',
+          'ClientServer/Angular1/Directives/TutorialManager/TutorialManager.directive.min.js': 'ClientServer/Angular1/Directives/TutorialManager/TutorialManager.directive.js',
           'ClientServer/Angular1/AngApp.min.js': 'ClientServer/Angular1/AngApp.js',
         }
       }
@@ -60,13 +63,16 @@ module.exports = function(grunt) {
           'ClientServer/Angular1/Service/login.service.min.js',
           'ClientServer/Angular1/Service/shared.service.min.js',
           'ClientServer/Angular1/Service/BlogManager.service.min.js',
+          'ClientServer/Angular1/Service/TutorialManager.service.min.js',
           'ClientServer/Angular1/Directives/SignUp/SignUp.directive.min.js',
           'ClientServer/Angular1/Directives/Login/Login.directive.min.js',
           'ClientServer/Angular1/Directives/shared/common.directive.min.js',
           'ClientServer/Angular1/Directives/shared/Grid/grid.directive.min.js',
           'ClientServer/Angular1/Directives/shared/tagger/tagger.directive.min.js',
           'ClientServer/Angular1/Directives/shared/Disqus/disqus.directive.min.js',
-          'ClientServer/Angular1/Directives/BlogManager/BlogPostManager.directive.min.js'
+          'ClientServer/Angular1/Directives/BlogManager/BlogPostManager.directive.min.js',
+          'ClientServer/Angular1/Directives/BlogManager/BlogPostFull.directive.min.js',
+          'ClientServer/Angular1/Directives/TutorialManager/TutorialManager.directive.min.js'
         ],
         dest: 'public/javascripts/Global.min.js',
       },
@@ -79,7 +85,7 @@ module.exports = function(grunt) {
       },
     },
     clean: {
-      js: ['ClientServer/**/*.min.js', 'ClientServer/**/*.min.js.map','public/**/*.min.js', 'public/**/*.min.js.map'],
+      js: ['ClientServer/**/*.min.js', 'ClientServer/**/*.min.js.map', 'public/**/*.min.js', 'public/**/*.min.js.map'],
       css: ['public/**/*.min.css', 'public/**/*.min.css.map']
     },
     watch: {
@@ -103,6 +109,6 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'jshint', 'uglify', 'cssmin', 'concat']);
-   // Default task(s).
+  // Default task(s).
   grunt.registerTask('dev', ['clean', 'jshint', 'uglify', 'cssmin', 'concat']);
 };

@@ -8,6 +8,12 @@ body{
     font-family: 'Quicksand', sans-serif;
 }
 
+.abel-font *{
+  font-family: 'Abel', sans-serif !important;
+  font-size:18px !important; 
+  line-height:1.5 !important;
+}
+
 /* Absolute Center Spinner */
 .loading {
   display: none;
@@ -267,5 +273,8 @@ body{
 }
 .eborder-top {
     border-top: 2px solid #007AFF !important;
+}
+.ModalPreviewCls .modal-dialog{
+  max-width:700px !important;
 }
 
