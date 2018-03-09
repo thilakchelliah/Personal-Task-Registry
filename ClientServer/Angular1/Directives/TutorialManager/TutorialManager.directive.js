@@ -15,12 +15,16 @@ tRDashboardApp.directive('tutorialManagerDirective', ['$localStorage', function(
             $scope.showLoader = function() {
                 sharedService.toggleLoader(true);
             }
+            $scope.hideLoader = function() {
+                sharedService.toggleLoader(false);
+            }
             $scope.fileSelected = function(curObj) {
 
                 sharedService.toggleLoader(false);
                 $scope.files = curObj.files[0];
                 $scope.files.filename = $scope.title.replace(/ /g, '') + ".html";
                 $scope.showUpload = true;
+                $scope.UploadSuccess = false;
                 $scope.$apply();
 
             }
@@ -52,12 +56,36 @@ tRDashboardApp.directive('tutorialManagerDirective', ['$localStorage', function(
                     tags: $scope.tagArray.join(','),
                     tutorialLink: $scope.fileName
                 }
+                var saveDialog = bootbox.dialog({
+                    title: 'Please Wait!',
+                    message: '<p><i class="fa fa-spin fa-spinner"></i> processing...</p>',
+                    closeButton: false,
+                    buttons: {
+                        ok: {
+                            label: "Ok",
+                            className: 'btn-info',
+                            callback: function() {
+
+                            }
+                        }
+                    }
+                });
                 tutorialManagerService.AddOrUpdateTutorial(data, true).then(
                     function(res) {
-                        alert("success");
+                        $scope.title = "";
+                        saveDialog.find('.bootbox-body').html('Tutorial  Successfully Created/Updated');
+                        $scope.$broadcast('deleteAllTags');
+                        var dtable = $("#tutorialGrid").DataTable();
+                        sharedService.callGetUrlTofetch('/apiS/Tutorial/FetchAll').then(function(resp) {
+                            dtable.clear();
+                            dtable.rows.add(resp.data);
+                            dtable.draw();
+                        });
+                        $scope.UploadSuccess = false;
                     },
                     function(error) {
-                        alert("failure");
+                        console.log(error);
+                        saveDialog.find('.bootbox-body').html('Failed' + error.data.message);
                     })
 
 

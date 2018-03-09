@@ -20,7 +20,7 @@ var globalColData = {
     tutorialGrid: [{ 'title': 'Tutorial Title', 'data': 'title' }, { 'title': 'Tutorial Link', 'data': 'tutorialLink' },
         { 'title': 'URL ID', 'data': 'urlFriendlyTitle' },
         { 'title': 'Tags', 'data': 'tags' },
-         {
+        {
             'title': 'Preview',
             'data': 'urlFriendlyTitle',
             "render": function(data, type, row, meta) {
@@ -31,7 +31,7 @@ var globalColData = {
             'title': 'Delete',
             'data': '_id',
             "render": function(data, type, row, meta) {
-                return '<button ng-click="buttonEvent(&quot;blogRowDelete&quot;,&quot;' + data + '&quot;)">Delete</Button>';
+                return '<button ng-click="buttonEvent(&quot;tutorialRowDelete&quot;,&quot;' + data + '&quot;)">Delete</Button>';
             }
         }
     ]
@@ -53,9 +53,9 @@ tRDashboardApp.directive('gridDirective', ['$localStorage', 'sharedService', '$s
             sharedService.toggleLoader(true);
             element.find('table').attr('id', attributes.gdId);
         },
-        controller: ['$scope', 'sharedService', '$http', '$compile', 'blogManagerService',
-            function($scope, sharedService, $http, $compile, blogManagerService) {
-
+        controller: ['$scope', 'sharedService', '$http', '$compile', 'blogManagerService', 'tutorialManagerService',
+            function($scope, sharedService, $http, $compile, blogManagerService, tutorialManagerService) {
+                debugger;
                 var datatable;
                 if ($scope.gdType == "URL") {
                     sharedService.callGetUrlTofetch($scope.gridData).then(function(resp) {
@@ -67,13 +67,14 @@ tRDashboardApp.directive('gridDirective', ['$localStorage', 'sharedService', '$s
                                     $compile(angular.element(row).contents())($scope);
                                 }
                             });
+                             debugger;
                             sharedService.toggleLoader(false);
                         },
                         function(error) {});
                 }
 
                 $scope.buttonEvent = function(eventFor, data) {
-
+                    sharedService.toggleLoader(true);
                     switch (eventFor) {
                         case "blogGridPreview":
 
@@ -93,6 +94,7 @@ tRDashboardApp.directive('gridDirective', ['$localStorage', 'sharedService', '$s
                                         }
                                     }
                                 });
+                                sharedService.toggleLoader(false);
 
                             });
                             break;
@@ -105,6 +107,42 @@ tRDashboardApp.directive('gridDirective', ['$localStorage', 'sharedService', '$s
                                         datatable.clear();
                                         datatable.rows.add(resp.data);
                                         datatable.draw();
+                                        sharedService.toggleLoader(false);
+                                    });
+                                },
+                                function(err) {
+
+                                });
+                            break;
+                        case "tutorialGridPreview":
+                            $compile(' <blog-post-full url-id="' + data + '"></blog-post-full>')($scope, function(clonedElement, scope) {
+                                var procDialog = bootbox.dialog({
+                                    title: 'Blog Preview',
+                                    message: $(clonedElement),
+                                    closeButton: false,
+                                    className: 'ModalPreviewCls',
+                                    buttons: {
+                                        ok: {
+                                            label: "Ok",
+                                            className: 'btn-info',
+                                            callback: function() {
+                                                procDialog.modal('hide');
+                                            }
+                                        }
+                                    }
+                                });
+                                sharedService.toggleLoader(false);
+                            });
+                            break;
+                        case "tutorialRowDelete":
+                            tutorialManagerService.DeleteTutorialRow({ id: data }).then(
+                                function(resp) {
+
+                                    sharedService.callGetUrlTofetch($scope.gridData).then(function(resp) {
+                                        datatable.clear();
+                                        datatable.rows.add(resp.data);
+                                        datatable.draw();
+                                        sharedService.toggleLoader(false);
                                     });
                                 },
                                 function(err) {

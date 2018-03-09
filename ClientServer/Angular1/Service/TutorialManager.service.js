@@ -23,6 +23,12 @@ tRDashboardApp.service('tutorialManagerService', ['$http', function($http) {
     };
 
 
+  var _deleteTutorialRow = function (id) {
+        return $http.post('/apiS/Tutorial/Delete', id);
+
+    };
+
+    blogManagerService.DeleteTutorialRow = _deleteTutorialRow;
     blogManagerService.UploadTutorialFile = _uploadTutorialFile;
     blogManagerService.AddOrUpdateTutorial = _AddOrUpdateTutorial;
 

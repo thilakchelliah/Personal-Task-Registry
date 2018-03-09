@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     Tutorial = mongoose.model('Tutorial');
+var fs = require('fs');
 
 exports.AddTutorial = function(req, res) {
     if (!req.body.title) {
@@ -8,7 +9,7 @@ exports.AddTutorial = function(req, res) {
     else {
         var TutorialData = new Tutorial({
             title: req.body.title,
-            tutorialLink: '/public/uploads/' + req.body.tutorialLink,
+            tutorialLink: 'uploads/' + req.body.tutorialLink,
             urlFriendlyTitle: (req.body.title).replace(/\s/g, "-"),
             tags: req.body.tags,
             createdDate: new Date().toDateString(),
@@ -53,4 +54,28 @@ exports.uploadTutorialFile = function(req, res) {
     else
         res.status(500).send(JSON.stringify({ "status": "file Upload Failure" }));
 
+};
+
+
+
+exports.DeleteTutorialPost = function(req, res) {
+
+    Tutorial.findByIdAndRemove(req.body.id, (err, doc) => {
+        if (err) {
+            res.send(err);
+        }
+
+        else {
+            var filePath = "./public/" + doc.tutorialLink;
+            fs.unlink(filePath, function(err) {
+                if (err) {
+                    console.log(err);
+                    res.json("Failed");
+                }
+                console.log('file deleted successfully');
+                res.json("Success");
+            });
+
+        }
+    });
 };

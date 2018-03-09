@@ -20,7 +20,7 @@
     <div class="col-md-12">
       <div class="form-group">
         <label>Upload Tutorial HTML</label>
-         <input type="file" name="file" ng-click="showLoader()" onchange="angular.element(this).scope().fileSelected(this)"  />
+         <input type="file" name="file" ng-click="showLoader()" ng-blur="hideLoader()" onchange="angular.element(this).scope().fileSelected(this)"  />
          <button class="btn btn-info btn-fill btn-wd" ng-click="uploadFile()" ng-if="showUpload">Iniate Upload</button>
          <span class="badge badge-success" ng-if="UploadSuccess">Success</span>
          <span class="badge badge-danger" ng-if="UploadFailed">Failure</span>
