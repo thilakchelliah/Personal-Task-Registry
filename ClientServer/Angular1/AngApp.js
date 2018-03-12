@@ -19,7 +19,20 @@ techRegistryApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
             url: '/main',
             templateUrl: 'App/ContentMaster/Content.html'
         })
+        .state('Tutorial', {
+            url: '/tutorial',
+            templateUrl: 'App/TutorialList/TutorialList.html'
+        })
         .state('BlogPost', {
+            url: '/BlogPost/:urlId',
+            templateUrl: 'App/ContentMaster/BlogPostContent.html',
+            controller: ['$rootScope', '$stateParams',
+                function($scope, $statesParams) {
+                    $scope.urlId = $statesParams.urlId;
+                }
+            ]
+        })
+        .state('TutorialPost', {
             url: '/BlogPost/:urlId',
             templateUrl: 'App/ContentMaster/BlogPostContent.html',
             controller: ['$rootScope', '$stateParams',
