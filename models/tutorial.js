@@ -7,6 +7,14 @@ var TutorialSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    shortDesc:{
+        type: String,
+        required: true,
+    },
+    cardImageURL:{
+        type: String,
+        required: true,
+    },
     tutorialLink: {
         type: String,
         unique: true,

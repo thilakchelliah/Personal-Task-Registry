@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Tutorial = mongoose.model('Tutorial');
 var fs = require('fs');
 
-exports.AddTutorial = function(req, res) {
+exports.AddTutorial = function (req, res) {
     if (!req.body.title) {
         res.status(400).send({ message: "Title cannot be Empty" });
     }
@@ -12,11 +12,13 @@ exports.AddTutorial = function(req, res) {
             tutorialLink: 'uploads/' + req.body.tutorialLink,
             urlFriendlyTitle: (req.body.title).replace(/\s/g, "-"),
             tags: req.body.tags,
+            shortDesc: req.body.shortDesc,
+            cardImageURL: req.body.cardImageURL,
             createdDate: new Date().toDateString(),
             updatedDate: new Date().toDateString()
         });
 
-        TutorialData.save(function(err, data) {
+        TutorialData.save(function (err, data) {
             console.log(data);
             if (err) {
                 console.log(err);
@@ -29,13 +31,13 @@ exports.AddTutorial = function(req, res) {
     }
 };
 
-exports.GetAllTutorial = function(req, res) {
+exports.GetAllTutorial = function (req, res) {
 
 
     Tutorial
         .find()
         .populate('user')
-        .exec(function(err, tutorailList) {
+        .exec(function (err, tutorailList) {
             if (err) {
                 res.send(err);
             }
@@ -46,7 +48,7 @@ exports.GetAllTutorial = function(req, res) {
 
 };
 
-exports.uploadTutorialFile = function(req, res) {
+exports.uploadTutorialFile = function (req, res) {
     if (req.files.length != 0) {
         var fileName = req.files[0].filename;
         res.send(JSON.stringify({ "status": "success", "fileName": fileName }));
@@ -58,7 +60,7 @@ exports.uploadTutorialFile = function(req, res) {
 
 
 
-exports.DeleteTutorialPost = function(req, res) {
+exports.DeleteTutorialPost = function (req, res) {
 
     Tutorial.findByIdAndRemove(req.body.id, (err, doc) => {
         if (err) {
@@ -67,7 +69,7 @@ exports.DeleteTutorialPost = function(req, res) {
 
         else {
             var filePath = "./public/" + doc.tutorialLink;
-            fs.unlink(filePath, function(err) {
+            fs.unlink(filePath, function (err) {
                 if (err) {
                     console.log(err);
                     res.json("Failed");
