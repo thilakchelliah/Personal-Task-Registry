@@ -81,3 +81,37 @@ exports.DeleteTutorialPost = function (req, res) {
         }
     });
 };
+
+exports.GetAllTutorial = function(req, res) {
+
+
+    Tutorial
+        .find()
+        .populate('user')
+        .exec(function(err, tutorial) {
+            if (err) {
+                res.send(err);
+            }
+
+            else
+                res.json(tutorial);
+        });
+
+};
+
+exports.GetOneTutorial = function(req, res) {
+
+
+    Tutorial
+        .findOne({urlId:req.query.urlId})
+        .populate('user')
+        .exec(function(err, tutorial) {
+            if (err) {
+                res.send(err);
+            }
+
+            else
+                res.json(tutorial);
+        });
+
+};

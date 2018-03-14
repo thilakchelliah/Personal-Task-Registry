@@ -21,7 +21,7 @@ techRegistryApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
         })
         .state('Tutorial', {
             url: '/tutorial',
-            templateUrl: 'App/TutorialList/TutorialList.html'
+            template: '<tutorial-list-directive></tutorial-list-directive>'
         })
         .state('BlogPost', {
             url: '/BlogPost/:urlId',

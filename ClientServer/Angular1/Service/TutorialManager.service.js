@@ -23,8 +23,17 @@ tRDashboardApp.service('tutorialManagerService', ['$http', function($http) {
     };
 
 
-  var _deleteTutorialRow = function (id) {
+    var _deleteTutorialRow = function(id) {
         return $http.post('/apiS/Tutorial/Delete', id);
+
+    };
+    var _FetchAllTutorial = function(fd) {
+        debugger;
+        return $http.post('apiS/Tutorial/Fetchs', fd, {
+            withCredentials: true,
+            headers: { 'Content-Type': undefined },
+            transformRequest: angular.identity
+        });
 
     };
 

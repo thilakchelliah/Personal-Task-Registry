@@ -33,6 +33,20 @@ sharedModule.service('sharedService', ['$http', function($http) {
     };
 
 
+    var _fetchAllTutorials = function() {
+        return $http.get('/api/Tutorial/FetchAll');
+    };
+
+    var _fetchTutorialDetail = function(urlId) {
+
+        var config = {
+            params: {
+                urlId: urlId
+            }
+        };
+        return $http.get('/api/Tutorial/FetchOne', config);
+    };
+
     sharedService.FetchAllBlog = _fetchAllBlog;
     sharedService.FetchBlogDetails = _fetchBlogDetails;
     sharedService.callGetUrlTofetch = _callGetUrlTofetch;

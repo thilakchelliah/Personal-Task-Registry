@@ -44,6 +44,16 @@
 
 
     <div class="card-columns">
+        <div class="card" ng-repeat="curObj in tutObjList">
+            <img class="card-img-top" src="{{curObj.cardImageURL}}" alt="Card image cap">
+            <div class="card-block">
+                <h4 class="card-title">{{curObj.title}}</h4>
+                <p class="card-text">{{curObj.shortDesc}}</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>
         <div class="card">
             <img class="card-img-top" src="http://1.bp.blogspot.com/-iTl46miOXpY/VaZ0bDvw-4I/AAAAAAAACDM/66oaodZvznc/w1200-h630-p-k-no-nu/nodejs-logo.png" alt="Card image cap">
             <div class="card-block">
