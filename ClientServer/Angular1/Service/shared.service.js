@@ -49,6 +49,8 @@ sharedModule.service('sharedService', ['$http', function($http) {
 
     sharedService.FetchAllBlog = _fetchAllBlog;
     sharedService.FetchBlogDetails = _fetchBlogDetails;
+    sharedService.FetchAllTutorial = _fetchAllTutorial;
+    sharedService.FetchTutorialDetails = _fetchTutorialDetails;
     sharedService.callGetUrlTofetch = _callGetUrlTofetch;
     sharedService.toggleLoader = _toggleLoader;
     sharedService.generateUniqueId = _generateUniqueId;
