@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 require("../models/user");
 require("../models/BlogPost");
-require("../models/Tutorial");
+require("../models/tutorial");
 var userController = require('../controller/user.controller.js');
 var blogController = require('../controller/blog.controller.js');
 var tutorialController = require('../controller/tutorial.controller.js');

@@ -79,6 +79,8 @@ tRDashboardApp.directive('tutorialManagerDirective', ['$localStorage', function(
                         $scope.title = "";
                         saveDialog.find('.bootbox-body').html('Tutorial  Successfully Created/Updated');
                         $scope.$broadcast('deleteAllTags');
+                        $scope.previewText = "";
+                        $scope.crdImgUrl = "";s
                         var dtable = $("#tutorialGrid").DataTable();
                         sharedService.callGetUrlTofetch('/apiS/Tutorial/FetchAll').then(function(resp) {
                             dtable.clear();

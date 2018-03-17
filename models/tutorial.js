@@ -7,11 +7,11 @@ var TutorialSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    shortDesc:{
+    shortDesc: {
         type: String,
         required: true,
     },
-    cardImageURL:{
+    cardImageURL: {
         type: String,
         required: true,
     },
