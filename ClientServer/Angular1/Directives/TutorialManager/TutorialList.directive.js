@@ -28,6 +28,8 @@ techRegistryApp.directive('tutorialListDirective', ['$localStorage', function($l
             $scope.openTutorial=function (id) {
                 debugger;
             }
+            
+            
 
         }]
     };
