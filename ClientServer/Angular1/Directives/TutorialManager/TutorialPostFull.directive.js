@@ -10,7 +10,7 @@ techRegistryApp.directive('tutorialPostFullDirective', ['$localStorage', functio
         controller: ['$scope', '$http', 'sharedService', '$stateParams', '$sce', function($scope, $http, sharedService, $stateParams, $sce) {
             $scope.tagArray = [];
             $scope.init = function() {
-                sharedService.FetchTutorialsDetails($scope.Id).then(
+                sharedService.FetchTutorialsDetails($scope.urlId).then(
                     function(response) {
 
                         $scope.title = response.data.title;

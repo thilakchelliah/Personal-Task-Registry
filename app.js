@@ -33,7 +33,7 @@ var storage = multer.diskStorage({
 global.multerUpload = multer({ storage: storage });
 
 
-mongoose.connect("mongodb://" + localIp + ":27017/TechRegistrydb", { useMongoClient: true }, function(err, db) {
+mongoose.connect("mongodb://thilaktest:test123@ds143070.mlab.com:43070/tech_registry_db", { useMongoClient: true }, function(err, db) {
   if (err) {
     return console.dir(err);
   }

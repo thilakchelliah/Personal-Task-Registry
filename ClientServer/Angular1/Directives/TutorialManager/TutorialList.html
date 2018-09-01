@@ -43,18 +43,22 @@
     </div>
 
 
-    <div class="card-deck">
-        <div class="card" style="width: 18rem;margin-top:3px;" ng-repeat="curObj in tutObjList" ng-click="openTutorial(curObj.id)" style="cursor:pointer">
-            <img class="card-img-top" src="{{curObj.cardImageURL}}" alt="Card image cap">
-            <div class="card-block">
-                <h4 class="card-title">{{curObj.title}}</h4>
-                <p class="card-text" style="font-size:12px;">{{curObj.shortDesc}}</p>
+    <div class="row">
+        <div class="col-sm-3 col-md-3 pb-2" ng-repeat="curObj in tutObjList" style="cursor:pointer">
+            <div class="card" style="margin-top:3px;"  ng-click="openTutorial(curObj.id)" >
+                <img class="card-img-top" src="{{curObj.cardImageURL}}" alt="Card image cap">
+                <div class="card-block">
+                    <h4 class="card-title">{{curObj.title}}</h4>
+                    <p class="card-text" style="font-size:12px;">{{curObj.shortDesc}}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
             </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
+    
         </div>
-
     </div>
+
+   
 
 </div>

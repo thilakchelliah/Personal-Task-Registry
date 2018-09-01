@@ -9,7 +9,7 @@
     "@uirouter/angularjs": "^1.0.12",
     "angular": "^1.6.9",
     "angular-jwt": "^0.1.9",
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^3.0.0",
     "body-parser": "~1.15.2",
     "bootbox": "^4.4.0",
     "bootstrap": "^4.0.0-beta.2",
